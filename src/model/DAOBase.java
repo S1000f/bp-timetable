@@ -9,16 +9,16 @@ import java.sql.SQLException;
 
 public class DAOBase implements DAO {
 	public Connection getConnection() throws SQLException {
-		String jdbc_driver = "oracle.jdbc.OracleDriver";
-		String db_url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String jdbcDriver = "oracle.jdbc.OracleDriver";
+		String dbUrl = "jdbc:oracle:thin:@localhost:1521:XE";
 		try {
-			Class.forName(jdbc_driver);
+			Class.forName(jdbcDriver);
 			Connection conn =
-					DriverManager.getConnection(db_url,"scott","tiger");
+					DriverManager.getConnection(dbUrl,"scott","tiger");
 			if(conn == null)
 				System.out.println("conn fail");		
 			else 
-				System.out.println("conn sucess");		
+				System.out.println("conn success");		
 			return conn;
 		} catch(Exception e) {
 			e.printStackTrace();
