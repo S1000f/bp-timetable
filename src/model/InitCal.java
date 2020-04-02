@@ -9,7 +9,7 @@ public class InitCal {
 	private int weeks;
 	private String year;
 	private String month;
-	private int day = 1;
+	private final int day = 1;
 	int intYear;
 	int intMonth;
 	
