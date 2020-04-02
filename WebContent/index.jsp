@@ -26,14 +26,12 @@
 			<option value="11">11</option>
 			<option value="12">12</option>
 		</select>
-		<input type="submit" value="submit" />
+		<input type="submit" value="make a timetable" />
 	</form>
 
 	<%
-		String year = "";
-		String month = "";
-		year = request.getParameter("year");
-		month = request.getParameter("month");
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
 	%>
 
 	<jsp:include page="forward.jsp" flush="false">

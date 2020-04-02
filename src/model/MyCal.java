@@ -3,27 +3,30 @@ package model;
 import java.time.LocalDate;
 import java.time.DayOfWeek;
 
+
 public class MyCal {
 	
 	private LocalDate date;
 	private DayOfWeek today;
-	private String firstDay;
+	private int firstDay;
+	private int lastDay;
 	
 	public MyCal(int year, int month, int day) {
-		date = LocalDate.of(year, month, day);
-		today = date.getDayOfWeek();
-		firstDay = String.valueOf(today);
+		this.date = LocalDate.of(year, month, day);
+		this.today = date.getDayOfWeek();
+		this.firstDay = today.getValue();
+		this.lastDay = date.lengthOfMonth();
 	}
 	
-	public String getFirstDay() {
+	public int getFirstDay() {
 		return firstDay;
 	}
 	
+	public int getLastDay() {
+		return lastDay;
+	}
+	
 	public static void main(String[] args) {
-		//MyCal cal = new MyCal(2021, 4);
-		//String dayStart = cal.getFirstDay();
-		
-		//System.out.println(dayStart);
 		
 	}
 	
