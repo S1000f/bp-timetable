@@ -24,12 +24,36 @@ public class DrawCal {
 		this.dayOne = 1;
 	}
 	
+	public List<String> getFirstWeek() {
+		return firstWeek;
+	}
+
+	public List<String> getSecondWeek() {
+		return secondWeek;
+	}
+
+	public List<String> getThirdWeek() {
+		return thirdWeek;
+	}
+
+	public List<String> getFourthWeek() {
+		return fourthWeek;
+	}
+
+	public List<String> getFifthWeek() {
+		return fifthWeek;
+	}
+
+	public List<String> getLastWeek() {
+		return lastWeek;
+	}
+
 	public int initDrawing() {
 		numOfWeeks++;
 		firstWeek = new ArrayList<>(7);
 		
 		for(int i = 0; i < firstday - 1; i++) {
-			firstWeek.add(i, "");
+			firstWeek.add(i, "-");
 		}
 		
 		for(int i = firstday - 1; i < 7; i++) {

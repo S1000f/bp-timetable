@@ -27,7 +27,6 @@ public class InitCal {
 	
 	public void setMonth(String month) {
 		this.month = month;
-		initMyCal();
 	}
 	
 	public int getDay() {
@@ -42,7 +41,15 @@ public class InitCal {
 		return lastday;
 	}
 	
-	public int initMyCal() {
+	public int getWeeks () {
+		return weeks;
+	}
+	
+	public DrawCal getDrawCal() {
+		return drawing;
+	}
+	
+	public int initMyCal(String year, String month) {
 		
 		try {
 			intYear = Integer.valueOf(year);
