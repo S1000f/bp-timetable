@@ -16,13 +16,13 @@
 		<div class="container">
 			<div class="cal cal01">
 				<div class="top">
-					<div id="mon"></div>
-					<div id="tue"></div>
-					<div id="wed"></div>
-					<div id="thur"></div>
-					<div id="fri"></div>
-					<div id="sat"></div>
-					<div id="sun"></div>
+					<div id="mon">mon</div>
+					<div id="tue">tue</div>
+					<div id="wed">wed</div>
+					<div id="thur">thur</div>
+					<div id="fri">fri</div>
+					<div id="sat">sat</div>
+					<div id="sun">sun</div>
 				</div>
 				<div class="weeks">
 					<div class="first-week"></div>

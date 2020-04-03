@@ -31,7 +31,8 @@ public class MyCal {
 	public int getLastDay() {
 		return lastDay;
 	}
-	
+
+	// TODO
 	public static void main(String[] args) {
 		DrawCal draw = new DrawCal(3, 30);
 		draw.initDrawing();
