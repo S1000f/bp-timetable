@@ -1,3 +1,4 @@
+<%@page import="java.util.Optional"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,34 +7,29 @@
 <%@ page import="model.DrawCal" %>
 
 	<%
-	String year = null;
-	String month = null;
-
+	String year;
+	String month;
 	List<String> week1 = null;
 	List<String> week2 = null;
 	List<String> week3 = null;
 	List<String> week4 = null;
 	List<String> week5 = null;
 	List<String> week6 = null;
-	
-	year = request.getParameter("year");
-	month = request.getParameter("month");
 
+	year = Optional.ofNullable(request.getParameter("year")).orElse("2077");
+	month = Optional.ofNullable(request.getParameter("month")).orElse("1");
+	
 	InitCal initcal = new InitCal();
 	int weeks = initcal.initMyCal(year, month);
-		
-	try {
-		DrawCal drawing = initcal.getDrawCal();
-		week1 = drawing.getFirstWeek();
-		week2 = drawing.getSecondWeek();
-		week3 = drawing.getThirdWeek();
-		week4 = drawing.getFourthWeek();
-		week5 = drawing.getFifthWeek();
-		week6 = drawing.getLastWeek();
-		
-	} catch(Exception e) {
-		e.printStackTrace();
-	}
+	DrawCal drawing = initcal.getDrawCal();
+	
+	week1 = drawing.getFirstWeek();
+	week2 = drawing.getSecondWeek();
+	week3 = drawing.getThirdWeek();
+	week4 = drawing.getFourthWeek();
+	week5 = drawing.getFifthWeek();
+	week6 = drawing.getLastWeek();
+	
 	%>
 
 <!DOCTYPE html>
@@ -55,13 +51,13 @@
 	}
 	
 		.container > .cal {
-			width: 460px;
+			width: 480px;
 			margin: 0 auto;
 			padding: 0;
 		}
 		
 			.container > .cal > div.rows {
-				width: 450px;
+				width: 480px;
 				margin: 0 auto;
 				padding: 0;
 				font-weight: bold;
@@ -86,7 +82,7 @@
 				}
 				
 				.container > .cal > .rows > div.oneday {
-					margin: 2px 2.1px 0 2.1px;
+					margin: 0px 3px 0 3px;
 				}
 				
 </style>
@@ -114,7 +110,7 @@
 				</div>
 				<div class="rows week2">
 					<%
-					for(int j = 0; j < week2.size(); j++) {
+					for(int j = 0; j < week2.size() ; j++) {
 						%><div class="day oneday"><%= week2.get(j) %></div><%
 					}
 					%>
@@ -155,11 +151,5 @@
 		</div>
 	</div>	
 	<hr />
-	
-	<jsp:useBean id="InitCal" class="model.InitCal">
-		<jsp:setProperty name="InitCal" property="year" />
-		<jsp:setProperty name="InitCal" property="month" />
-	</jsp:useBean>
-	
 </body>
 </html>

@@ -1,6 +1,5 @@
+<%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-
-<%@ page import="model.MyCal"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,13 +12,12 @@
 		display: inline-block;
 	}
 
-
 </style>
 </head>
 <body>
 	<div class="header">
 		<form method="get" action="index.jsp">
-			<input type="text" name="year" placeholder="year" /><br />
+			<input type="number" name="year" placeholder="year" required/><br />
 			<label for="month">month:</label>
 			<select id="month" name="month">
 				<option value="1">1</option>
@@ -40,15 +38,8 @@
 		</form>
 	</div>
 	<hr />
-	<%
-		String year = request.getParameter("year");
-		String month = request.getParameter("month");
-	%>
 	<div class="include calendar">
-		<jsp:include page="forward.jsp" flush="false">
-			<jsp:param name="year" value="<%=year%>" />
-			<jsp:param name="month" value="<%=month%>" />
-		</jsp:include>
+		<jsp:include page="calendar.jsp" flush="false" />
 	</div>
 
 </body>

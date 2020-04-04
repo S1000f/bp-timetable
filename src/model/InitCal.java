@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Optional;
+
 public class InitCal {
 
 	private MyCal cal;
@@ -10,8 +12,8 @@ public class InitCal {
 	private String year;
 	private String month;
 	private final int day = 1;
-	int intYear;
-	int intMonth;
+	private int intYears;
+	private int intMonths;
 	
 	public String getYear() {
 		return year;
@@ -52,10 +54,15 @@ public class InitCal {
 	public int initMyCal(String year, String month) {
 		
 		try {
-			intYear = Integer.valueOf(year);
-			intMonth = Integer.valueOf(month);
+			intYears = Optional.ofNullable(year)
+					.map(s-> Integer.valueOf(s))
+					.orElse(2077);
 			
-			this.cal = new MyCal(intYear, intMonth, day);
+			intMonths = Optional.ofNullable(month)
+					.map(s-> Integer.valueOf(s))
+					.orElse(1);
+			
+			this.cal = new MyCal(intYears, intMonths, day);
 			this.firstday = cal.getFirstDay();
 			this.lastday = cal.getLastDay();
 			
