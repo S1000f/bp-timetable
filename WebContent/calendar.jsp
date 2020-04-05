@@ -104,28 +104,28 @@
 				<div class="rows week1">
 					<%
 					for(int j = 0; j < week1.size(); j++) {
-						%><div class="day oneday"><%= week1.get(j) %></div><%
+						%><div class="day oneday d<%= week1.get(j) %>" id="<%= week1.get(j) %>"><%= week1.get(j) %></div><%
 					}
 					%>
 				</div>
 				<div class="rows week2">
 					<%
 					for(int j = 0; j < week2.size() ; j++) {
-						%><div class="day oneday"><%= week2.get(j) %></div><%
+						%><div class="day oneday d<%= week2.get(j) %>" id="<%= week2.get(j) %>"><%= week2.get(j) %></div><%
 					}
 					%>
 				</div>
 				<div class="rows week3">
 					<%
 					for(int j = 0; j < week3.size(); j++) {
-						%><div class="day oneday"><%= week3.get(j) %></div><%
+						%><div class="day oneday d<%= week3.get(j) %>" id="<%= week3.get(j) %>"><%= week3.get(j) %></div><%
 					}
 					%>
 				</div>
 				<div class="rows week4">
 					<%
 					for(int j = 0; j < week4.size(); j++) {
-						%><div class="day oneday"><%= week4.get(j) %></div><%
+						%><div class="day oneday d<%= week4.get(j) %>" id="<%= week4.get(j) %>"><%= week4.get(j) %></div><%
 					}
 					%>
 				</div>
@@ -133,7 +133,7 @@
 					<%
 					if(weeks >= 5) {
 						for(int j = 0; j < week5.size(); j++) {
-							%><div class="day oneday"><%= week5.get(j) %></div><%
+							%><div class="day oneday d<%= week5.get(j) %>" id="<%= week5.get(j) %>"><%= week5.get(j) %></div><%
 						}
 					}
 					%>
@@ -142,7 +142,7 @@
 					<%
 					if(weeks >= 6) {
 						for(int j = 0; j < week6.size(); j++) {
-							%><div class="day oneday"><%= week6.get(j) %></div><%
+							%><div class="day oneday d<%= week6.get(j) %>" id="<%= week6.get(j) %>"><%= week6.get(j) %></div><%
 						}
 					}
 					%>
