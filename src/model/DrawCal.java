@@ -16,7 +16,6 @@ public class DrawCal {
 	private List<String> fifthWeek;
 	private List<String> lastWeek;
 	
-	
 	public DrawCal(int first, int last) {
 		this.firstday = first;
 		this.lastday = last;
@@ -84,10 +83,6 @@ public class DrawCal {
 			}
 		}
 		
-		/*
-		 * To avoid making the null-point exception, calculating exact size of array we need
-		 * when it comes to creating fifth and lastweek array list.
-		 */
 		if(dayOne <= lastday && !fourthWeek.isEmpty()) {
 			fifthWeek = new ArrayList<>(lastday - dayOne >= 7 ? 7 : lastday - dayOne);
 			numOfWeeks++;
@@ -106,29 +101,5 @@ public class DrawCal {
 		
 		return numOfWeeks;
 		
-	}
-	
-	// TODO
-	public void test() {
-		for(String e: firstWeek) {
-			System.out.print(e + "\t");
-		}
-		System.out.println();
-		for(String e: secondWeek) {
-			System.out.print(e + "\t");
-		}
-		System.out.println();
-		for(String e: thirdWeek) {
-			System.out.print(e + "\t");
-		}
-		System.out.println();
-		for(String e: fourthWeek) {
-			System.out.print(e + "\t");
-		}
-		System.out.println();
-		for(String e: fifthWeek) {
-			System.out.print(e + "\t");
-		}
-		System.out.println();
 	}
 }

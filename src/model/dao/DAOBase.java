@@ -1,4 +1,4 @@
-package model;
+package model.dao;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +8,15 @@ import java.sql.Statement;
 import java.sql.SQLException;
 
 public class DAOBase implements DAO {
+	
+	private static final DAOBase instance = new DAOBase();
+	
+	private DAOBase() {}
+	
+	public static DAOBase getInstance() {
+		return instance;
+	}
+	
 	public Connection getConnection() throws SQLException {
 		String jdbcDriver = "oracle.jdbc.OracleDriver";
 		String dbUrl = "jdbc:oracle:thin:@localhost:1521:XE";

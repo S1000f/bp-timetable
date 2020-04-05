@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public class InitCal {
 
+	private final int day = 1;
 	private MyCal cal;
 	private DrawCal drawing;
 	private int firstday;
@@ -11,7 +12,6 @@ public class InitCal {
 	private int weeks;
 	private String year;
 	private String month;
-	private final int day = 1;
 	private int intYears;
 	private int intMonths;
 	
