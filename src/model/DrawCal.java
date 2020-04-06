@@ -76,7 +76,7 @@ public class DrawCal {
 		}
 		
 		if(dayOne <= lastday && !thirdWeek.isEmpty()) {
-			fourthWeek = new ArrayList<>(7);
+			fourthWeek = new ArrayList<>();
 			numOfWeeks++;
 			for(int i = 0; i < 7 && dayOne <= lastday; i++) {
 				fourthWeek.add(i, String.valueOf(dayOne++));
@@ -84,7 +84,7 @@ public class DrawCal {
 		}
 		
 		if(dayOne <= lastday && !fourthWeek.isEmpty()) {
-			fifthWeek = new ArrayList<>(lastday - dayOne >= 7 ? 7 : lastday - dayOne);
+			fifthWeek = new ArrayList<>();
 			numOfWeeks++;
 			for(int i = 0; i < 7 && dayOne <= lastday; i++) {
 				fifthWeek.add(i, String.valueOf(dayOne++));
@@ -92,7 +92,7 @@ public class DrawCal {
 		}
 		
 		if(dayOne <= lastday && !fifthWeek.isEmpty()) {
-			lastWeek = new ArrayList<>(lastday - dayOne >= 7 ? 7 : lastday - dayOne);
+			lastWeek = new ArrayList<>();
 			numOfWeeks++;
 			for(int i = 0; i < 7 && dayOne <= lastday; i++) {
 				lastWeek.add(i, String.valueOf(dayOne++));

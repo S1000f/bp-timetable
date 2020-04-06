@@ -13,14 +13,13 @@ public class LoginDB {
 	private String sql;
 	private ResultSet rs;
 	
-	private LoginDB() {
-		
-	}
+	private LoginDB() {}
 	
 	public static LoginDB getInstance() {
 		return instance;
 	}
 	
+	//TODO
 	public int insertMember(LoginData user) {
 		
 		int result = 0;
@@ -41,6 +40,7 @@ public class LoginDB {
 		return result;
 	}
 	
+	//TODO
 	public int updateMember(LoginData user) {
 		
 		int result = 0;
@@ -60,10 +60,12 @@ public class LoginDB {
 		return result;
 	}
 	
+	//TODO
 	public int deleteMember(LoginData user) {
 		return 0;
 	}
 	
+	//TODO
 	public LoginData readMember(LoginData user) {
 		
 		try {
@@ -88,6 +90,11 @@ public class LoginDB {
 		
 		return user;
 		
+	}
+	
+	//TODO
+	public int loginUser(LoginData user) {
+		return 1;
 	}
 	
 }
