@@ -26,7 +26,7 @@
 		<jsp:include page="loginForm.jsp" flush="false" />
 		<div class="menu calendar">
 			<form method="get" action="index.jsp">
-				<input type="number" name="year" placeholder="year" required/><br />
+				<input type="number" name="year" placeholder="input year" required/><br />
 				<label for="month">month:</label>
 				<select id="month" name="month">
 					<option value="1">1</option>
@@ -46,11 +46,13 @@
 				<input type="submit" value="create a timetable" />
 			</form>
 		</div>
+		<jsp:include page="subjectsForm.jsp" flush="false" />
 	</div>
 	<hr />
 	<div class="include calendar">
 		<jsp:include page="calendar.jsp" flush="false" />
 	</div>
+	
 	
 
 </body>

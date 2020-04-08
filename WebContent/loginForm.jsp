@@ -11,7 +11,7 @@
 		<form method="get" action="index.jsp">
 			<input type="text" name="user" placeholder="user name" required/><br />
 			<input type="password" name="password" placeholder="password" required/><br />
-			<input type="submit" value="log in" /> 
+			<input type="submit" value="log in" />&nbsp;&nbsp;<input type="submit" value="sign up" /> 
 		</form>
 	</div>
 </body>
