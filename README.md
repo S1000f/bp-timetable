@@ -1,3 +1,3 @@
 # bp-timetable
 
-![proto01](resized_proto01.png)
+![proto02](proto02.png)
