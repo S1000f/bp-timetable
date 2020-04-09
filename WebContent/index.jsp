@@ -26,6 +26,7 @@
 		<jsp:include page="loginForm.jsp" flush="false" />
 		<jsp:include page="calendarForm.jsp" flush="false" />
 		<jsp:include page="subjectsForm.jsp" flush="false" />
+		<jsp:include page="subjectsForm2.jsp" flush="false" />
 	</div>
 	<hr />
 	<div class="include calendar">

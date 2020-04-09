@@ -1,4 +1,4 @@
-package model.dao;
+package model.data;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

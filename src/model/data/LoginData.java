@@ -1,4 +1,4 @@
-package model.dao;
+package model.data;
 
 public class LoginData {
 	

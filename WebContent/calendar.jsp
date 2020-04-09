@@ -9,6 +9,7 @@
 	<%!
 	int on = -1;
 	int subjectWeekPositon = 0;
+	int weeks;
 	String subjectName;
 	String year;
 	String month;
@@ -48,7 +49,7 @@
 	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
 	
 	InitCal initcal = new InitCal();
-	int weeks = initcal.initMyCal(year, month);
+	weeks = initcal.initMyCal(year, month);
 	DrawCal drawing = initcal.getDrawCal();
 	
 	week1 = drawing.getFirstWeek();
@@ -142,8 +143,6 @@
 				// TODO
 				if(on == 1) {
 					%>.container > .cal > .week<%= subjectWeekPositon %> > .day > div.subject {
-						
-					
 					
 					}<%
 				} else {
