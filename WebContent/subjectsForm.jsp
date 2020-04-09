@@ -10,7 +10,19 @@
 <body>
 	<div class="menu subjects">
 	<form method="get" action="index.jsp">
-		<input type="number" name="turnOn" placeholder="0 or 1" required/><br />
+		<label for="subjectName">subjects:</label>
+			<select id="subjectName" name="subjectName">
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="C#">C#</option>
+				<option value="Java">Java</option>
+				<option value="JSP">JSP</option>
+				<option value="Spring">Spring</option>
+				<option value="Linux">Linux</option>
+			</select>
+			<br />
+		<input type="number" name="turnOn" placeholder="0 or 1" required/>
+		<br />
 		<input type="submit" value="set subjects" />
 	</form>
 	</div>
@@ -19,6 +31,10 @@
 	String strTurnOn = Optional.ofNullable(request.getParameter("turnOn")).orElse("-1");
 	int turn = Integer.valueOf(strTurnOn);
 	session.setAttribute("turnOn", turn);
+	
+	String strSubjectName = Optional.ofNullable(request.getParameter("subjectName")).orElse("");
+	session.setAttribute("sessionSubjectName", strSubjectName);
+	
 	%>
 	
 	

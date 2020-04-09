@@ -8,11 +8,18 @@
 
 	<%!
 	int on = -1;
+	int subjectWeekPositon = 0;
 	String subjectName;
 	String year;
 	String month;
-	%>
 	
+	List<String> week1 = null;
+	List<String> week2 = null;
+	List<String> week3 = null;
+	List<String> week4 = null;
+	List<String> week5 = null;
+	List<String> week6 = null;
+	%>
 	
 	<%--making subjects --%>
 	<%
@@ -20,26 +27,19 @@
 	on = (Integer)session.getAttribute("turnOn");
 	
 	if(on == 1) {
-		subjectName = "C#";
+		subjectName = (String)session.getAttribute("sessionSubjectName");
 	} else if(on == 0 || on == -1) {
 		subjectName = "";
 	}
-	
 	%>
 	
 	<%--drawing calendar --%>
 	<%
-	List<String> week1 = null;
-	List<String> week2 = null;
-	List<String> week3 = null;
-	List<String> week4 = null;
-	List<String> week5 = null;
-	List<String> week6 = null;
-	
 	// TODO
 	if(on == -1) {
 		year = request.getParameter("year");
 		month = request.getParameter("month");
+		
 		session.setAttribute("sessionYear", year);
 		session.setAttribute("sessionMonth", month);
 	}
@@ -112,7 +112,7 @@
 				.container > .cal > .rows > div.oneday {
 					margin: 0px 3px 0 3px;
 					height: 60px;
-					border-bottom: 0px solid;
+					border-bottom: 0;
 					position: relative;
 				}
 				
@@ -130,15 +130,27 @@
 				<%
 				// TODO
 				if(on == 1) {
-				%>					
-				.container > .cal > .rows > .day > div.subject {
-					background-color: dodgerblue;
-				}
-				<%
+					%>.container > .cal > .rows > .day > div.subject {
+						background-color: dodgerblue;
+					}<%
 				} else {
 					
 				}
 				%>
+				
+				<%
+				// TODO
+				if(on == 1) {
+					%>.container > .cal > .week<%= subjectWeekPositon %> > .day > div.subject {
+						
+					
+					
+					}<%
+				} else {
+					
+				}
+				%>
+				
 </style>
 </head>
 <body>
