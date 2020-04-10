@@ -4,11 +4,9 @@
     
     <%
     InitSubject initSub = new InitSubject();
-    
+    int weeks = (Integer)session.getAttribute("sessionWeeks");
     
     %>
-    
-    
     
 <!DOCTYPE html>
 <html>
@@ -22,10 +20,10 @@
 		<label for="chooseWeek">weeks:</label>
 			<select id="chooseWeek" name="chooseWeek">
 			<%
-			for(int i = 1; i <= weeks )
+			for(int i = 1; i <= weeks; i++) {
+			%><option value="1"><%=i %></option><%
+			}
 			%>
-				<option value="C">C</option>
-				
 			</select>
 			<br />
 		<input type="number" name="turnOn" placeholder="0 or 1" required/>

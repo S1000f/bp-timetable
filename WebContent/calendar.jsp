@@ -50,6 +50,8 @@
 	
 	InitCal initcal = new InitCal();
 	weeks = initcal.initMyCal(year, month);
+	session.setAttribute("sessionWeeks", weeks);
+	
 	DrawCal drawing = initcal.getDrawCal();
 	
 	week1 = drawing.getFirstWeek();
@@ -66,9 +68,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Timetable</title>
-
 <style>
-	
+
 	.wrap {
 		width: 1020px;
 		margin: 0 auto;
