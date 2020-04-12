@@ -20,7 +20,7 @@ public class LoginDB {
 	}
 	
 	//TODO
-	public int insertMember(LoginData user) {
+	public int insertMember(LoginDto user) {
 		
 		int result = 0;
 		try {
@@ -41,7 +41,7 @@ public class LoginDB {
 	}
 	
 	//TODO
-	public int updateMember(LoginData user) {
+	public int updateMember(LoginDto user) {
 		
 		int result = 0;
 		try {
@@ -61,12 +61,12 @@ public class LoginDB {
 	}
 	
 	//TODO
-	public int deleteMember(LoginData user) {
+	public int deleteMember(LoginDto user) {
 		return 0;
 	}
 	
 	//TODO
-	public LoginData readMember(LoginData user) {
+	public LoginDto readMember(LoginDto user) {
 		
 		try {
 			conn = DAOBase.getInstance().getConnection();
@@ -77,7 +77,7 @@ public class LoginDB {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				user = new LoginData();
+				user = new LoginDto();
 				user.setId(rs.getString("ID"));
 				user.setId(rs.getString("PW"));
 				user.setId(rs.getString("EMAIL"));
@@ -93,7 +93,7 @@ public class LoginDB {
 	}
 	
 	//TODO
-	public int loginUser(LoginData user) {
+	public int loginUser(LoginDto user) {
 		return 1;
 	}
 	

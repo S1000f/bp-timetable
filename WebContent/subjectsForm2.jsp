@@ -1,10 +1,11 @@
-<%@page import="model.InitSubject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.Optional"%>
+<%@page import="model.InitSubject"%>
+<%@include file="initializer.jsp" %>
     
     <%
-    InitSubject initSub = new InitSubject();
-    int weeks = (Integer)session.getAttribute("sessionWeeks");
+    int dweeks = Optional.ofNullable((Integer)session.getAttribute("sessionWeeks")).orElse(1);
     
     %>
     
@@ -13,21 +14,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.weekTable {
+		width: 100px;
+		
+	}
+	
+	.weekTable > .rows {
+		width: 10px;
+		height: 10px;
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+	}
+	
+
+</style>
 </head>
 <body>
 	<div class="menu subjects2">
 	<form method="get" action="index.jsp">
 		<label for="chooseWeek">weeks:</label>
 			<select id="chooseWeek" name="chooseWeek">
-			<%
-			for(int i = 1; i <= weeks; i++) {
-			%><option value="1"><%=i %></option><%
-			}
-			%>
+				<option value="<%=dweeks %>" >whole</option>
+				<%
+				for(int i = 1; i <= dweeks; i++) {
+				%><option value="1"><%=i %></option><%
+				}
+				%>
 			</select>
 			<br />
-		<input type="number" name="turnOn" placeholder="0 or 1" required/>
-		<br />
+			<div class="weekTable">
+				<div class="rows top">
+						<div class="day mon">mon</div>
+						<div class="day tue">tue</div>
+						<div class="day wed">wed</div>
+						<div class="day thur">thur</div>
+						<div class="day fri">fri</div>
+						<div class="day sat">sat</div>
+						<div class="day sun">sun</div>
+					</div>
+				<div class="rows week1">
+					<%
+					for(int j = 0; j < week1.size(); j++) {
+						%><div class="day oneday d<%= week1.get(j) %>" id="<%= week1.get(j) %>"><%= week1.get(j) %>
+							<div class="subject s<%= week1.get(j) %>"><%= subjectName %></div>
+						</div><%
+					}
+					%>
+				</div>
+			</div>
 		<input type="submit" value="set subjects" />
 	</form>
 	</div>

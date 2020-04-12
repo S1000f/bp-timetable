@@ -62,9 +62,9 @@ public class InitCal {
 					.map(s-> Integer.valueOf(s))
 					.orElse(1);
 			
-			this.cal = new MyCal(intYears, intMonths, day);
-			this.firstday = cal.getFirstDay();
-			this.lastday = cal.getLastDay();
+			cal = new MyCal(intYears, intMonths, day);
+			firstday = cal.getFirstDay();
+			lastday = cal.getLastDay();
 			
 			drawing = new DrawCal(firstday, lastday);
 			weeks = drawing.initDrawing();

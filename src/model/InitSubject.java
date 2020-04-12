@@ -2,11 +2,11 @@ package model;
 
 import java.util.Map;
 
+import model.data.SubjectDto;
+
 public class InitSubject {
 	
-	private String subjectName;
-	private int subjectColor;
-	private Map<Integer, String> subjectMapWeek1;
+	private Map<Integer, SubjectDto> subjectMap;
 	
 	
 	

@@ -1,6 +1,6 @@
 package model.data;
 
-public class LoginData {
+public class LoginDto {
 	
 	private String id;
 	private String password;
