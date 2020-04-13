@@ -23,6 +23,24 @@ public class DrawCal {
 		this.dayOne = 1;
 	}
 	
+	public List<String> getWeek(int whichOne) {
+		if(whichOne == 1) {
+			return firstWeek;
+		} else if(whichOne == 2) {
+			return secondWeek;
+		} else if(whichOne == 3) {
+			return thirdWeek;
+		} else if(whichOne == 4) {
+			return fourthWeek;
+		} else if(whichOne == 5) {
+			return fifthWeek;
+		} else if(whichOne == 6) {
+			return lastWeek;
+		} else {
+			return null;
+		}
+	}
+	
 	public List<String> getFirstWeek() {
 		return firstWeek;
 	}

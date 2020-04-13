@@ -3,6 +3,17 @@
 <%@page import="java.util.Optional"%>
 <%@page import="model.InitSubject"%>
 <%@include file="initializer.jsp" %>
+
+	<%
+	int chooseWeek;
+	List<String> chosenWeek = null;
+	chooseWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
+	
+	if(chooseWeek > 0) {
+		chosenWeek = drawing.getWeek(chooseWeek);
+	}
+	
+	%>
     
 <!DOCTYPE html>
 <html>
@@ -38,10 +49,10 @@
 	<form method="get" action="index.jsp" class="form">
 		<label for="chooseWeek">weeks:</label>
 		<select id="chooseWeek" name="chooseWeek">
-			<option value="<%=weeks %>" >whole</option>
+			<option value="0" >whole</option>
 			<%
 			for(int i = 1; i <= weeks; i++) {
-			%><option value="1"><%=i %></option><%
+				%><option value="<%=i %>"><%=i %></option><%
 			}
 			%>
 		</select>
@@ -58,8 +69,14 @@
 				</div>
 			<div class="rows week1">
 				<%
-				for(int j = 0; j < week1.size(); j++) {
-					%><div class="day oneday d<%= week1.get(j) %>" id="<%= week1.get(j) %>"><%= week1.get(j) %></div><%
+				if(chooseWeek == 0) {
+					for(int j = 0; j < 7; j++) {
+						%><div class="day oneday whole" id="whole"></div><%
+					}
+				} else if(chosenWeek != null) {
+					for(int j = 0; j < chosenWeek.size(); j++) {
+						%><div class="day oneday d<%= chosenWeek.get(j) %>" id="<%= chosenWeek.get(j) %>"><%= chosenWeek.get(j) %></div><%
+					}
 				}
 				%>
 			</div>
