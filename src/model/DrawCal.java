@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DrawCal {
@@ -37,7 +38,7 @@ public class DrawCal {
 		} else if(whichOne == 6) {
 			return lastWeek;
 		} else {
-			return null;
+			return new ArrayList<>(Arrays.asList("","","","","","",""));
 		}
 	}
 	

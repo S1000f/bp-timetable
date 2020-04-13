@@ -9,7 +9,8 @@
 	List<String> chosenWeek = null;
 	chooseWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
 	
-	if(chooseWeek > 0) {
+	if(chooseWeek >= 0) {
+		on = 2;
 		chosenWeek = drawing.getWeek(chooseWeek);
 	}
 	
@@ -69,11 +70,7 @@
 				</div>
 			<div class="rows week1">
 				<%
-				if(chooseWeek == 0) {
-					for(int j = 0; j < 7; j++) {
-						%><div class="day oneday whole" id="whole"></div><%
-					}
-				} else if(chosenWeek != null) {
+				if(chosenWeek != null) {
 					for(int j = 0; j < chosenWeek.size(); j++) {
 						%><div class="day oneday d<%= chosenWeek.get(j) %>" id="<%= chosenWeek.get(j) %>"><%= chosenWeek.get(j) %></div><%
 					}

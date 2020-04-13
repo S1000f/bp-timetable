@@ -4,7 +4,7 @@
 <%@page import="java.util.List"%>
     
     <%!
-	int on = -1;
+	int on;
 	int subjectWeekPositon = 0;
 	int weeks;
 	String subjectName;
@@ -21,6 +21,7 @@
 	
 	<%--making subjects --%>
 	<%
+	
 	// TODO
 	on = (Integer)session.getAttribute("turnOn");
 	
@@ -34,7 +35,7 @@
 	<%--drawing calendar --%>
 	<%
 	// TODO
-	if(on == -1) {
+	if(request.getParameter("year") != year || request.getParameter("month") != month) {
 		year = request.getParameter("year");
 		month = request.getParameter("month");
 		
