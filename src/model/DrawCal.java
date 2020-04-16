@@ -41,30 +41,6 @@ public class DrawCal {
 			return new ArrayList<>(Arrays.asList("","","","","","",""));
 		}
 	}
-	
-	public List<String> getFirstWeek() {
-		return firstWeek;
-	}
-
-	public List<String> getSecondWeek() {
-		return secondWeek;
-	}
-
-	public List<String> getThirdWeek() {
-		return thirdWeek;
-	}
-
-	public List<String> getFourthWeek() {
-		return fourthWeek;
-	}
-
-	public List<String> getFifthWeek() {
-		return fifthWeek;
-	}
-
-	public List<String> getLastWeek() {
-		return lastWeek;
-	}
 
 	public int initDrawing() {
 		numOfWeeks++;

@@ -3,17 +3,17 @@ package model.data;
 public class SubjectDto {
 
 	private String name;
-	private String colorMarking;
+	private String colorTag;
 	private int sid; // Subject Identifier Number
 	private String teacher;
 	private String desc; // description for this subject
 	
-	public SubjectDto(String subjectName, String color) {
-		this.name = subjectName;
-		this.colorMarking = color;
+	public SubjectDto(String subjectNamed, String color) {
+		this.name = subjectNamed;
+		this.colorTag = color;
 		this.sid = 0;
 		this.teacher = "";
-		this.desc = subjectName;
+		this.desc = subjectNamed;
 	}
 
 	public String getName() {
@@ -22,11 +22,11 @@ public class SubjectDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getColorMarking() {
-		return colorMarking;
+	public String getColorTag() {
+		return colorTag;
 	}
-	public void setColorMarking(String colorMarking) {
-		this.colorMarking = colorMarking;
+	public void setColorMarking(String colorTag) {
+		this.colorTag = colorTag;
 	}
 	public int getSid() {
 		return sid;

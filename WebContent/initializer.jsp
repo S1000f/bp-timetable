@@ -35,7 +35,10 @@
 	<%--drawing calendar --%>
 	<%
 	// TODO
-	if(request.getParameter("year") != year || request.getParameter("month") != month) {
+	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
+	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
+	
+	if(request.getParameter("year") != null) {
 		year = request.getParameter("year");
 		month = request.getParameter("month");
 		
@@ -43,8 +46,6 @@
 		session.setAttribute("sessionMonth", month);
 	}
 	
-	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
-	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
 	
 	InitCal initcal = new InitCal();
 	weeks = initcal.initMyCal(year, month);
@@ -52,11 +53,11 @@
 	
 	DrawCal drawing = initcal.getDrawCal();
 	
-	week1 = drawing.getFirstWeek();
-	week2 = drawing.getSecondWeek();
-	week3 = drawing.getThirdWeek();
-	week4 = drawing.getFourthWeek();
-	week5 = drawing.getFifthWeek();
-	week6 = drawing.getLastWeek();
+	week1 = drawing.getWeek(1);
+	week2 = drawing.getWeek(2);
+	week3 = drawing.getWeek(3);
+	week4 = drawing.getWeek(4);
+	week5 = drawing.getWeek(5);
+	week6 = drawing.getWeek(6);
 	
 	%>
