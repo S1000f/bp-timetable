@@ -32,7 +32,7 @@ public class MyCal {
 		return lastDay;
 	}
 
-	// TODO
+	// TODO delete later
 	public static void main(String[] args) {
 		
 		

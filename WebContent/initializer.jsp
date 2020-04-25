@@ -22,7 +22,7 @@
 	<%--making subjects --%>
 	<%
 	
-	// TODO
+	// TODO delete later
 	on = (Integer)session.getAttribute("turnOn");
 	
 	if(on == 1) {

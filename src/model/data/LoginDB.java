@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-//TODO
+// TODO revision
 public class LoginDB {
 	
 	private static LoginDB instance = new LoginDB();
@@ -19,7 +19,7 @@ public class LoginDB {
 		return instance;
 	}
 	
-	//TODO
+	//TODO revision
 	public int insertMember(LoginDto user) {
 		
 		int result = 0;
@@ -40,7 +40,7 @@ public class LoginDB {
 		return result;
 	}
 	
-	//TODO
+	//TODO revision
 	public int updateMember(LoginDto user) {
 		
 		int result = 0;
@@ -60,12 +60,12 @@ public class LoginDB {
 		return result;
 	}
 	
-	//TODO
+	//TODO revision
 	public int deleteMember(LoginDto user) {
 		return 0;
 	}
 	
-	//TODO
+	//TODO revision
 	public LoginDto readMember(LoginDto user) {
 		
 		try {
@@ -92,7 +92,7 @@ public class LoginDB {
 		
 	}
 	
-	//TODO
+	//TODO revision
 	public int loginUser(LoginDto user) {
 		return 1;
 	}

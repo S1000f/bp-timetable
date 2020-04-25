@@ -68,7 +68,7 @@
 				}
 				
 				<%
-				// TODO
+				// TODO revison
 				if(on == 1) {
 					%>.container > .cal > .rows > .day > div.subject {
 						background-color: dodgerblue;
@@ -79,7 +79,7 @@
 				%>
 				
 				<%
-				// TODO
+				// TODO revision
 				if(on == 1) {
 					%>.container > .cal > .week<%= subjectWeekPositon %> > .day > div.subject {
 					
@@ -97,13 +97,13 @@
 			<div class="cal cal01">
 				<h2><%=year %>&nbsp;<%=month %></h2>
 				<div class="rows top">
-					<div class="day mon">mon</div>
-					<div class="day tue">tue</div>
-					<div class="day wed">wed</div>
-					<div class="day thur">thur</div>
-					<div class="day fri">fri</div>
-					<div class="day sat">sat</div>
-					<div class="day sun">sun</div>
+					<div class="day mon">Mon</div>
+					<div class="day tue">Tue</div>
+					<div class="day wed">Wed</div>
+					<div class="day thur">Thur</div>
+					<div class="day fri">Fri</div>
+					<div class="day sat">Sat</div>
+					<div class="day sun">Sun</div>
 				</div>
 				<div class="rows week1">
 					<%

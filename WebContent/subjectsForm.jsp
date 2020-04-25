@@ -1,6 +1,17 @@
 <%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+	<%
+	String strTurnOn = Optional.ofNullable(request.getParameter("turnOn")).orElse("-1");
+	int turn = Integer.valueOf(strTurnOn);
+	session.setAttribute("turnOn", turn);
+	
+	String strSubjectName = Optional.ofNullable(request.getParameter("subjectName")).orElse("");
+	session.setAttribute("sessionSubjectName", strSubjectName);
+	
+	%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,15 +38,6 @@
 		</form>
 	</div>
 	
-	<%
-	String strTurnOn = Optional.ofNullable(request.getParameter("turnOn")).orElse("-1");
-	int turn = Integer.valueOf(strTurnOn);
-	session.setAttribute("turnOn", turn);
-	
-	String strSubjectName = Optional.ofNullable(request.getParameter("subjectName")).orElse("");
-	session.setAttribute("sessionSubjectName", strSubjectName);
-	
-	%>
 	
 </body>
 </html>

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html>
@@ -30,6 +32,5 @@
 	<div class="include calendar">
 		<jsp:include page="calendar.jsp" flush="false" />
 	</div>
-
 </body>
 </html>

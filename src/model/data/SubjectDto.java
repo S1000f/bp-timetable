@@ -6,7 +6,7 @@ public class SubjectDto {
 	private String colorTag;
 	private int sid; // Subject Identifier Number
 	private String teacher;
-	private String desc; // description for this subject
+	private String desc; // description for a subject
 	
 	public SubjectDto(String subjectNamed, String color) {
 		this.name = subjectNamed;
