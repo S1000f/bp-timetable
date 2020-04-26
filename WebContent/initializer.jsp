@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="model.DrawCal"%>
 <%@page import="model.InitCal"%>
 <%@page import="java.util.Optional"%>
@@ -10,13 +11,8 @@
 	String subjectName;
 	String year;
 	String month;
-	
-	List<String> week1;
-	List<String> week2;
-	List<String> week3;
-	List<String> week4;
-	List<String> week5;
-	List<String> week6;
+
+	Map<Integer, List<String>> weeksContainer;
 	%>
 	
 	<%--making subjects --%>
@@ -46,18 +42,10 @@
 		session.setAttribute("sessionMonth", month);
 	}
 	
-	
 	InitCal initcal = new InitCal();
 	weeks = initcal.initMyCal(year, month);
 	session.setAttribute("sessionWeeks", weeks);
 	
 	DrawCal drawing = initcal.getDrawCal();
-	
-	week1 = drawing.getWeek(1);
-	week2 = drawing.getWeek(2);
-	week3 = drawing.getWeek(3);
-	week4 = drawing.getWeek(4);
-	week5 = drawing.getWeek(5);
-	week6 = drawing.getWeek(6);
-	
+	weeksContainer = drawing.getWeeksContainer();
 	%>

@@ -37,7 +37,5 @@
 			<input type="submit" value="set subjects" />
 		</form>
 	</div>
-	
-	
 </body>
 </html>

@@ -9,11 +9,8 @@
 
 	<%
 	List<String> chosenWeek = null;
-	int chooseWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
-	
-	if(chooseWeek >= 0) {
-		chosenWeek = drawing.getWeek(chooseWeek);
-	}
+	int whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
+	chosenWeek = drawing.getWeeksContainer().get(whichWeek);
 	
 	String[] str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"undefined"});
 	List<String> chosenDayList = new ArrayList<>(Arrays.asList(str));
