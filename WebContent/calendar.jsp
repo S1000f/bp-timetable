@@ -50,7 +50,7 @@
 				}
 				
 				.container > .cal > .rows > div.oneday {
-					margin: 0px 4px 0 1px;
+					margin: 0px 4px 0 2px;
 					height: 60px;
 					border-bottom: 0;
 					position: relative;

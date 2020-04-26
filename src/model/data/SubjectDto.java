@@ -2,25 +2,35 @@ package model.data;
 
 public class SubjectDto {
 
-	private String name;
-	private String colorTag;
+	private String user;
 	private int sid; // Subject Identifier Number
+	private String subjectName;
+	private String colorTag;
 	private String teacher;
 	private String desc; // description for a subject
 	
-	public SubjectDto(String subjectNamed, String color) {
-		this.name = subjectNamed;
+	public SubjectDto(String user, int sid, String subjectNamed, String color, String teacher, String desc) {
+		this.user = user;
+		this.sid = sid;
+		this.subjectName = subjectNamed;
 		this.colorTag = color;
-		this.sid = 0;
-		this.teacher = "";
-		this.desc = subjectNamed;
+		this.teacher = teacher;
+		this.desc = desc;
 	}
 
-	public String getName() {
-		return name;
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.subjectName = name;
 	}
 	public String getColorTag() {
 		return colorTag;

@@ -32,12 +32,9 @@ public class DrawCal {
 		return weeksContainer;
 	}
 	
-	public List<String> getWeek(int whichOne) {
-		return weeksContainer.get(whichOne);
-	}
-
 	public int initDrawing() {
 		numOfWeeks++;
+		weeksContainer.put(0, new ArrayList<>(Arrays.asList("-","-","-","-","-","-","-")));
 		firstWeek = new ArrayList<>(7);
 		
 		for(int i = 0; i < firstday - 1; i++) {

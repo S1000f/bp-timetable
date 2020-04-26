@@ -100,7 +100,7 @@
 				}
 				%>
 				<br />
-				<input type="submit" value="set subjects" />
+				<input type="submit" value="set plan" />
 			</form>
 		</div>
 	</div>
