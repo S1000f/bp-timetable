@@ -1,7 +1,8 @@
-<%@page import="model.data.SubjectDto"%>
-<%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@page import="java.util.Optional"%>
+<%@page import="model.data.SubjectDto"%>
     
 	<%
 	SubjectDto subjectOne;
@@ -24,6 +25,7 @@
 		desc = Optional.ofNullable(request.getParameter("desc")).orElse(subjectName);
 		
 		subjectOne = new SubjectDto(user, sid, subjectName, colorTag, teacher, desc);
+		
 	}
 	
 	
@@ -47,7 +49,7 @@
 		display: inline-block;
 		font-size: 14px;
 		height: 14px;
-		width: 90px;
+		width: 100px;
 	}
 	input {
 		display: inline-block;
