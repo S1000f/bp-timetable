@@ -4,17 +4,19 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.Arrays" %>
 
-<%@page import="model.InitSubject"%>
 <%@include file="initializer.jsp" %>
 
 	<%
 	List<String> chosenWeek = null;
+	
 	int whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
 	chosenWeek = drawing.getWeeksContainer().get(whichWeek);
 	
 	String[] str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"undefined"});
 	List<String> chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
+	subjectNamesList = Optional.ofNullable((List<String>)session.getAttribute("sessionSubjectNamesList"))
+			.orElse(new ArrayList<String>());	
 	%>
     
 <!DOCTYPE html>
@@ -100,7 +102,15 @@
 				}
 				%>
 				<br />
-				<input type="submit" value="set plan" />
+				<label for="chooseSubject">subject:</label>
+				<select id="chooseSubject" name="chooseSubject">
+					<%
+					for(int i = 0; i < subjectNamesList.size(); i++) {
+						%><option value="<%=subjectNamesList.get(i) %>"><%=subjectNamesList.get(i) %></option><%
+					}
+					%>
+				</select>
+				<input type="submit" value="save plan" />
 			</form>
 		</div>
 	</div>

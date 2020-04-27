@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@page import="java.util.Optional"%>
 <%@page import="model.data.SubjectDto"%>
+
+<%@include file="initializer.jsp" %>
     
 	<%
-	SubjectDto subjectOne;
-	
-	// TODO implement later
-	String user = "mock";
 	
 	int sid;
 	String subjectName;
@@ -16,7 +13,6 @@
 	String teacher;
 	String desc;
 	
-	// TODO start here
 	if(request.getParameter("sid") != null) {
 		sid = Integer.valueOf(request.getParameter("sid"));
 		subjectName = request.getParameter("subjectNamed");
@@ -24,18 +20,11 @@
 		teacher = Optional.ofNullable(request.getParameter("teacher")).orElse("teacher");
 		desc = Optional.ofNullable(request.getParameter("desc")).orElse(subjectName);
 		
-		subjectOne = new SubjectDto(user, sid, subjectName, colorTag, teacher, desc);
+		subjectController.addSubject(sid, subjectName, colorTag, teacher, desc);
+		subjectNamesList = subjectController.getSubjectNames();
 		
+		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
 	}
-	
-	
-	
-	String strTurnOn = Optional.ofNullable(request.getParameter("turnOn")).orElse("-1");
-	int turn = Integer.valueOf(strTurnOn);
-	session.setAttribute("turnOn", turn);
-	
-	String strSubjectName = Optional.ofNullable(request.getParameter("subjectNamed")).orElse("");
-	session.setAttribute("sessionSubjectName", strSubjectName);
 	
 	%>
 	
@@ -69,7 +58,7 @@
 			<input type="text" name="teacher" placeholder="optional"/><br />
 			<label for="desc" class="nameTag">Description:</label>
 			<input type="text" name="desc" placeholder="optional" /><br />
-			<input type="submit" value="set subjects" />
+			<input type="submit" value="sava subject" />
 		</form>
 	</div>
 </body>
