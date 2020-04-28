@@ -3,12 +3,14 @@ package controller;
 import java.util.List;
 import java.util.Map;
 
+import model.logic.DrawCal;
 import model.logic.InitCal;
 
 public class CalController {
 	
 	private String user;
 	private InitCal initcal;
+	private DrawCal drawing;
 	
 	public CalController(String user) {
 		this.user = user;
@@ -22,6 +24,7 @@ public class CalController {
 	}
 	
 	public Map<Integer, List<String>> getWeeksContainer() {
-		return initcal.getDrawCal().getWeeksContainer();
+		drawing = initcal.getDrawCal();
+		return drawing.getWeeksContainer();
 	}
 }
