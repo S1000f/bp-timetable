@@ -10,11 +10,11 @@ import model.logic.InitSubject;
 public class SubjectController {
 	
 	private String user;
+	private SubjectDB subjectDb;
 	private SubjectDto subjectDto;
 	private InitSubject initSubject;
 	private List<SubjectDto> subjectList;
 	private List<String> subjectNamesList;
-	private SubjectDB subjectDb;
 	
 	public SubjectController(String user) {
 		this.user = user;
@@ -34,5 +34,14 @@ public class SubjectController {
 		subjectNamesList = initSubject.getSubjectNames(subjectList);
 		return subjectNamesList;
 	}
+	
+	
 
 }
+
+
+
+
+
+
+

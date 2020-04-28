@@ -10,7 +10,7 @@
 	List<String> chosenWeek = null;
 	
 	int whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
-	chosenWeek = drawing.getWeeksContainer().get(whichWeek);
+	chosenWeek = calController.getWeeksContainer().get(whichWeek);
 	
 	String[] str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"undefined"});
 	List<String> chosenDayList = new ArrayList<>(Arrays.asList(str));

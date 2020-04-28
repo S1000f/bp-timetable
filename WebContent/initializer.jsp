@@ -1,3 +1,4 @@
+<%@page import="controller.CalController"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="controller.SubjectController"%>
 <%@page import="java.util.Map"%>
@@ -10,7 +11,7 @@
 	// TODO implement later
 	final String user = "mock";
     SubjectController subjectController = new SubjectController(user);
-    
+    CalController calController = new CalController(user);
     //
     
     int on = 0;
@@ -40,10 +41,9 @@
 		session.setAttribute("sessionMonth", month);
 	}
 	
-	InitCal initcal = new InitCal();
-	weeks = initcal.initMyCal(year, month);
+	weeks = calController.initCal(year, month);
 	session.setAttribute("sessionWeeks", weeks);
+
+	weeksContainer = calController.getWeeksContainer();
 	
-	DrawCal drawing = initcal.getDrawCal();
-	weeksContainer = drawing.getWeeksContainer();
 	%>
