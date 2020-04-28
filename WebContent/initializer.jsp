@@ -9,7 +9,7 @@
     
     <%!
 	// TODO implement later
-	final String user = "mock";
+	String user = "mock";
     SubjectController subjectController = new SubjectController(user);
     CalController calController = new CalController(user);
     //

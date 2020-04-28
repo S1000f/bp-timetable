@@ -34,9 +34,6 @@ public class SubjectController {
 		subjectNamesList = initSubject.getSubjectNames(subjectList);
 		return subjectNamesList;
 	}
-	
-	
-
 }
 
 

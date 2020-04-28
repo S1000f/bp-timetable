@@ -16,7 +16,11 @@
 	List<String> chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
 	subjectNamesList = Optional.ofNullable((List<String>)session.getAttribute("sessionSubjectNamesList"))
-			.orElse(new ArrayList<String>());	
+			.orElse(new ArrayList<String>(Arrays.asList("---")));
+	
+	
+	
+	
 	%>
     
 <!DOCTYPE html>

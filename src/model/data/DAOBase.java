@@ -18,11 +18,11 @@ public class DAOBase implements DAO {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		String jdbcDriver = "oracle.jdbc.OracleDriver";
-		String dbUrl = "jdbc:oracle:thin:@localhost:1521:XE";
+		String jdbcDriver = "org.mariadb.jdbc.Driver";
+		String dbUrl = "jdbc:mariadb://localhost:3306/test";
 		try {
 			Class.forName(jdbcDriver);
-			Connection conn = DriverManager.getConnection(dbUrl,"scott","tiger");
+			Connection conn = DriverManager.getConnection(dbUrl,"dohpkim","81754682");
 			if(conn == null)
 				System.out.println("conn fail");		
 			else 
