@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@page import="java.util.TreeMap"%>
 <%@page import="java.util.Optional"%>
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.Arrays" %>
@@ -7,16 +9,28 @@
 <%@include file="initializer.jsp" %>
 
 	<%
-	List<String> chosenWeek = null;
+	int whichWeek;
+	String[] str;
+	String chosenSubject;
+	List<String> chosenWeek;
+	List<String> chosenDayList;
+	Map<Integer, String> planMap;
 	
-	int whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
+	whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
 	chosenWeek = calController.getWeeksContainer().get(whichWeek);
 	
-	String[] str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"undefined"});
-	List<String> chosenDayList = new ArrayList<>(Arrays.asList(str));
+	str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"undefined"});
+	chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
 	subjectNamesList = Optional.ofNullable((List<String>)session.getAttribute("sessionSubjectNamesList"))
 			.orElse(new ArrayList<String>(Arrays.asList("---")));
+	
+	chosenSubject = Optional.ofNullable(request.getParameter("chooseSubject")).orElse("undefined");
+	
+	if(chosenSubject != null) {
+		planController.savePlan(year, month, whichWeek, chosenDayList, chosenSubject);
+		
+	}
 	
 	
 	

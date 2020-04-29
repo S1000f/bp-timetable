@@ -1,9 +1,11 @@
+<%@page import="controller.PlanController"%>
 <%@page import="controller.CalController"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="controller.SubjectController"%>
-<%@page import="java.util.Map"%>
 <%@page import="model.logic.DrawCal"%>
 <%@page import="model.logic.InitCal"%>
+
+<%@page import="java.util.Map"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Optional"%>
 <%@page import="java.util.List"%>
     
@@ -12,12 +14,13 @@
 	String user = "mock";
     SubjectController subjectController = new SubjectController(user);
     CalController calController = new CalController(user);
+    PlanController planController = new PlanController(user);
     //
     
     int on = 0;
 	int subjectWeekPositon = 0;
 	int weeks;
-	String subjectName;
+	String subjectName = "";
 	String year;
 	String month;
 
