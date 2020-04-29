@@ -12,10 +12,11 @@
     <%!
 	// TODO implement later
 	String user = "mock";
+    //
     SubjectController subjectController = new SubjectController(user);
     CalController calController = new CalController(user);
     PlanController planController = new PlanController(user);
-    //
+    
     
     int on = 0;
 	int subjectWeekPositon = 0;
@@ -26,13 +27,15 @@
 
 	Map<Integer, List<String>> weeksContainer;
 	List<String> subjectNamesList;
-	
+	// TODO revision
+	Map<Integer, Map<Integer, String>> weekPlanMap;
+	Map<Integer, String> emptyMap;
 	%>
 	
 	<%--drawing calendar --%>
 	<%
 	
-	// TODO
+	// TODO revison
 	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
 	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
 	

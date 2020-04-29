@@ -58,7 +58,7 @@
 			<input type="text" name="teacher" placeholder="optional"/><br />
 			<label for="desc" class="nameTag">Description:</label>
 			<input type="text" name="desc" placeholder="optional" /><br />
-			<input type="submit" value="save subject" />
+			<input type="submit" value="add subject" />
 		</form>
 	</div>
 </body>

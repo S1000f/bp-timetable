@@ -109,7 +109,7 @@
 					%><div class="rows week<%=i %>"><%
 					for(int j = 0; j < weeksContainer.get(i).size(); j++) {
 						%><div class="day oneday d<%= weeksContainer.get(i).get(j) %>"><%=weeksContainer.get(i).get(j) %>
-							<div class="subject s<%= weeksContainer.get(i).get(j) %>"><%=subjectName %></div>
+							<div class="subject s<%= weeksContainer.get(i).get(j) %>"><%=i %></div>
 						</div><%
 					}
 					%></div><%

@@ -14,12 +14,11 @@
 	String chosenSubject;
 	List<String> chosenWeek;
 	List<String> chosenDayList;
-	Map<Integer, String> planMap;
 	
 	whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
 	chosenWeek = calController.getWeeksContainer().get(whichWeek);
 	
-	str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"undefined"});
+	str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"0"});
 	chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
 	subjectNamesList = Optional.ofNullable((List<String>)session.getAttribute("sessionSubjectNamesList"))
@@ -27,9 +26,10 @@
 	
 	chosenSubject = Optional.ofNullable(request.getParameter("chooseSubject")).orElse("undefined");
 	
+	// TODO revision
 	if(chosenSubject != null) {
 		planController.savePlan(year, month, whichWeek, chosenDayList, chosenSubject);
-		
+		weekPlanMap = planController.loadPlan();
 	}
 	
 	
