@@ -7,16 +7,13 @@ import java.sql.ResultSet;
 // TODO revision
 public class LoginDB {
 	
-	private static LoginDB instance = new LoginDB();
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private String sql;
 	private ResultSet rs;
 	
-	private LoginDB() {}
-	
-	public static LoginDB getInstance() {
-		return instance;
+	public LoginDB() {
+		
 	}
 	
 	//TODO revision
@@ -27,7 +24,7 @@ public class LoginDB {
 			conn = DAOBase.getInstance().getConnection();
 			sql = "insert into member VALUES((select nvl(max(num),0)+1 from member), ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getId());
+			pstmt.setString(1, user.getUser());
 			pstmt.setString(2, user.getPassword());
 			result = pstmt.executeUpdate();
 			
@@ -48,7 +45,7 @@ public class LoginDB {
 			conn = DAOBase.getInstance().getConnection();
 			sql = "UPDATE MEMBER SET EMAIL= ? WHERE ID = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getId());
+			pstmt.setString(1, user.getUser());
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -66,21 +63,19 @@ public class LoginDB {
 	}
 	
 	//TODO revision
-	public LoginDto readMember(LoginDto user) {
+	public LoginDto loginUser(LoginDto user) {
 		
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "select * from member where ID = ? and PW = ?";
+			sql = "select * from USER where USER = ? and PASSWD = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getId());
+			pstmt.setString(1, user.getUser());
 			pstmt.setString(2, user.getPassword());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				user = new LoginDto();
-				user.setId(rs.getString("ID"));
-				user.setId(rs.getString("PW"));
-				user.setId(rs.getString("EMAIL"));
+				user = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"));
+				return user;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,13 +83,8 @@ public class LoginDB {
 			DAOBase.getInstance().closeDBResources(rs, pstmt, conn);
 		}
 		
-		return user;
+		return null;
 		
 	}
-	
-	//TODO revision
-	public int loginUser(LoginDto user) {
-		return 1;
-	}
-	
+		
 }

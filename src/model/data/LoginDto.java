@@ -2,15 +2,20 @@ package model.data;
 
 public class LoginDto {
 	
-	private String id;
+	private String user;
 	private String password;
 	
-	public String getId() {
-		return id;
+	public LoginDto(String user, String password) {
+		this.user = user;
+		this.password = password;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public String getUser() {
+		return user;
+	}
+	
+	public void setUser(String user) {
+		this.user = user;
 	}
 	
 	public String getPassword() {

@@ -9,12 +9,15 @@ import java.sql.SQLException;
 
 public class DAOBase implements DAO {
 	
-	private static final DAOBase instance = new DAOBase();
+	private static DAOBase INSTANCE;
 	
 	private DAOBase() {}
 	
 	public static DAOBase getInstance() {
-		return instance;
+		if(INSTANCE == null) {
+			INSTANCE = new DAOBase();
+		}
+		return INSTANCE;
 	}
 	
 	public Connection getConnection() throws SQLException {
