@@ -16,6 +16,29 @@ public class LoginDB {
 		
 	}
 	
+	public LoginDto loginUser(LoginDto user) {
+		
+		try {
+			conn = DAOBase.getInstance().getConnection();
+			sql = "select * from USER where USER = ? and PASSWD = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUser());
+			pstmt.setString(2, user.getPassword());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"));
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DAOBase.getInstance().closeDBResources(rs, pstmt, conn);
+		}
+		
+		return null;
+	}
+	
 	//TODO revision
 	public int insertMember(LoginDto user) {
 		
@@ -62,29 +85,5 @@ public class LoginDB {
 		return 0;
 	}
 	
-	//TODO revision
-	public LoginDto loginUser(LoginDto user) {
-		
-		try {
-			conn = DAOBase.getInstance().getConnection();
-			sql = "select * from USER where USER = ? and PASSWD = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUser());
-			pstmt.setString(2, user.getPassword());
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				user = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"));
-				return user;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DAOBase.getInstance().closeDBResources(rs, pstmt, conn);
-		}
-		
-		return null;
-		
-	}
 		
 }

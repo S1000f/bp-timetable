@@ -20,16 +20,25 @@
 
 <%
 	LoginController loginController;
-	String user = request.getParameter("user");
+	String strUser = request.getParameter("user");
 	String passwd = request.getParameter("password");
 	int loginResult;
+	String loginMessage;
 	
 	// start here
-	if(user != null) {
-		loginController = new LoginController(user, passwd);
+	if(strUser != null) {
+		loginController = new LoginController(strUser, passwd);
 		loginResult = loginController.loginUser();
 		if(loginResult == 0) {
-			session.setAttribute(user, user);
+			session.setAttribute("sessionUser", strUser);
+			loginMessage = "Welcome";
+		} else {
+			loginMessage = "incorrct user Id or password";
 		}
 	}
+	
+	
 %>
+
+
+
