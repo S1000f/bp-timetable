@@ -45,7 +45,11 @@
 <style type="text/css">
 
 	div.loginforms {
-		width: 200px;
+		width: 130px;
+	}
+	
+	input.input {
+		width: 115px;
 	}
 
 	div.login {
@@ -88,8 +92,8 @@
 			</form>
 		</div>
 		<form method="post" action="index.jsp" class="loginForm">
-			<input type="text" name="user" placeholder="user name" required/><br />
-			<input type="password" name="password" placeholder="password" required/><br />
+			<input type="text" name="user" placeholder="user name" class="input" required/><br />
+			<input type="password" name="password" placeholder="password" class="input" required/><br />
 			<input type="submit" value="log in" /><br />
 			<label for="sign-up" >check for sign-up</label><input type="checkbox" name="sign-up" /><br/>
 			<input type="submit" value="sign up" /> 
