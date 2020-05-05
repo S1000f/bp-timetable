@@ -29,6 +29,10 @@
 		<jsp:include page="weekPlan.jsp" flush="false" />
 	</div>
 	<hr />
+	<div class="include message">
+		<jsp:include page="message.jsp" flush="false" />
+	</div>
+	<hr />
 	<div class="include calendar">
 		<jsp:include page="calendar.jsp" flush="false" />
 	</div>

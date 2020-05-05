@@ -8,9 +8,9 @@
 </head>
 <body>
 	<div class="menu calendar">
-		<form method="get" action="index.jsp">
+		<form method="get" action="index.jsp" >
 			<label for="year">year:</label>
-			<input type="number" name="year" placeholder="input year" min="1000" required/><br />
+			<input type="number" name="year" placeholder="input year" min="1000" value="2020" required/><br />
 			<label for="month">month:</label>
 			<select id="month" name="month">
 				<option value="1">1</option>

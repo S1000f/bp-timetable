@@ -88,7 +88,7 @@
 	<div class="menu subjects2">
 		<form method="get" action="index.jsp">
 		<label for="chooseWeek">weeks:</label>
-		<select id="chooseWeek" name="chooseWeek">
+		<select id="chooseWeek" name="chooseWeek" >
 			<option value="0" >whole</option>
 			<%
 			for(int i = 1; i <= weeks; i++) {

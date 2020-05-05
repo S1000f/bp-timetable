@@ -9,14 +9,11 @@ import java.sql.SQLException;
 
 public class DAOBase implements DAO {
 	
-	private static DAOBase INSTANCE;
+	private static final DAOBase INSTANCE = new DAOBase();
 	
 	private DAOBase() {}
 	
 	public static DAOBase getInstance() {
-		if(INSTANCE == null) {
-			INSTANCE = new DAOBase();
-		}
 		return INSTANCE;
 	}
 	
@@ -28,7 +25,7 @@ public class DAOBase implements DAO {
 			Connection conn = DriverManager.getConnection(dbUrl,"dohpkim","8175");
 			if(conn == null)
 				System.out.println("conn fail");		
-			else 
+			else
 				System.out.println("conn success");		
 			return conn;
 		} catch(Exception e) {

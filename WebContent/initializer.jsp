@@ -1,3 +1,4 @@
+<%@page import="controller.LoginController"%>
 <%@page import="controller.PlanController"%>
 <%@page import="controller.CalController"%>
 <%@page import="controller.SubjectController"%>
@@ -9,32 +10,38 @@
 <%@page import="java.util.Optional"%>
 <%@page import="java.util.List"%>
     
-    <%!
+<%!
 	// TODO implement later
 	String user = "mock";
-    //
-    SubjectController subjectController = new SubjectController(user);
-    CalController calController = new CalController(user);
-    PlanController planController = new PlanController(user);
-    
-    
-    int on = 0;
+	//
+   	SubjectController subjectController = new SubjectController(user);
+	CalController calController = new CalController(user);
+	PlanController planController = new PlanController(user);
+   
+	int on = 0;
 	int subjectWeekPositon = 0;
 	int weeks;
+	int loginResult;
 	String subjectName = "";
 	String year;
 	String month;
-
+	String message;
+	
+	// loginForm
+	LoginController loginController;
+	String strUser;
+	String passwd;
+	String signUpCheck;
+	String logout;
+	
 	Map<Integer, List<String>> weeksContainer;
 	List<String> subjectNamesList;
 	// TODO revision
 	Map<Integer, Map<Integer, String>> weekPlanMap;
 	Map<Integer, String> emptyMap;
-	%>
-	
-	<%--drawing calendar --%>
-	<%
-	
+%>
+
+<%
 	// TODO revison
 	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
 	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
@@ -49,7 +56,7 @@
 	
 	weeks = calController.initCal(year, month);
 	session.setAttribute("sessionWeeks", weeks);
-
-	weeksContainer = calController.getWeeksContainer();
 	
-	%>
+	weeksContainer = calController.getWeeksContainer();
+
+%>

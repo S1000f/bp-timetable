@@ -4,10 +4,14 @@ public class LoginDto {
 	
 	private String user;
 	private String password;
+	private int hasSubject;
+	private int hasPlan;
 	
-	public LoginDto(String user, String password) {
+	public LoginDto(String user, String password, int hasSub, int hasPlan) {
 		this.user = user;
 		this.password = password;
+		this.hasSubject = hasSub;
+		this.hasPlan = hasPlan;
 	}
 	
 	public String getUser() {

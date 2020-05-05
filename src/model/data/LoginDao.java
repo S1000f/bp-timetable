@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 // TODO revision
-public class LoginDB {
+public class LoginDao {
 	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private String sql;
 	private ResultSet rs;
 	
-	public LoginDB() {
+	public LoginDao() {
 		
 	}
 	
@@ -27,8 +27,10 @@ public class LoginDB {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				user = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"));
+				user = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"), rs.getInt("HAS_SUB"), rs.getInt("HAS_PLAN"));
 				return user;
+			} else {
+				return null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
