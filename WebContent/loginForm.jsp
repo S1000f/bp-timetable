@@ -12,7 +12,7 @@
 	logout = request.getParameter("logout");
 	
 	
-	if(strUser != null && passwd != null) {
+	if(strUser != null && passwd != null && signUpCheck.equals("off")) {
 		loginController = new LoginController(strUser, passwd);
 		loginResult = loginController.loginUser();
 		
@@ -95,7 +95,7 @@
 			<input type="text" name="user" placeholder="user name" class="input" required/><br />
 			<input type="password" name="password" placeholder="password" class="input" required/><br />
 			<input type="submit" value="log in" /><br />
-			<label for="sign-up" >check for sign-up</label><input type="checkbox" name="sign-up" /><br/>
+			<label for="sign-up" >check for sign-up</label><input type="checkbox" name="sign-up" value="on" /><br/>
 			<input type="submit" value="sign up" /> 
 		</form>
 	</div>
