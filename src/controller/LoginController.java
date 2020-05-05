@@ -16,12 +16,12 @@ public class LoginController {
 		LoginDto result = loginDB.loginUser(loginDto);
 		if(result != null && result.getUser().equals(loginDto.getUser()) && result.getPassword().equals(loginDto.getPassword())) {
 			loginDto = result;
-			return 0;
-		} else if(result == null) {
 			return 1;
+		} else if(result == null) {
+			return 2;
 		}
 		
-		return 2;
+		return 3;
 	}
 	
 	public int signUp() {

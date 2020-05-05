@@ -16,18 +16,18 @@
 		loginController = new LoginController(strUser, passwd);
 		loginResult = loginController.loginUser();
 		
-		if(loginResult == 0) {
+		if(loginResult == 1) {
 			session.setAttribute("sessionUser", strUser);
 			session.setAttribute("sessionMessage", "log-in success");
 		} else {
 			session.setAttribute("sessionMessage", "incorrect id or password!");
-			loginResult = -1;
+			loginResult = 0;
 		}
 	}
 	
 	if(logout != null) {
 		session.invalidate();
-		loginResult = -1;
+		loginResult = 0;
 	}
 	
 	if(strUser != null && signUpCheck.equals("on")) {
@@ -45,14 +45,14 @@
 <style type="text/css">
 
 	div.loginforms {
-		width: 120px;
+		width: 200px;
 	}
 
 	div.login {
 		<%
-		if(loginResult == -1) {
+		if(loginResult == 0) {
 			%>display: none;<%
-		} else if(loginResult == 0) {
+		} else if(loginResult == 1) {
 			%>display: block;<%
 		}
 		%>
@@ -60,9 +60,9 @@
 	
 	form.loginForm {
 		<%
-		if(loginResult == 0) {
+		if(loginResult == 1) {
 			%>display: none;<%
-		} else if(loginResult == -1) {
+		} else if(loginResult == 0) {
 			%>display: block;<%
 		}
 		%>
