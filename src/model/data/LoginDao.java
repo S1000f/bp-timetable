@@ -41,13 +41,35 @@ public class LoginDao {
 		return null;
 	}
 	
-	//TODO revision
-	public int insertMember(LoginDto user) {
+	public int checkUser(LoginDto user) {
 		
-		int result = 0;
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "insert into member VALUES((select nvl(max(num),0)+1 from member), ?, ?)";
+			sql = "select * from USER where USER = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUser());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return 2;
+			} else {
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DAOBase.getInstance().closeDBResources(rs, pstmt, conn);
+		}
+		
+		return 3;
+	}
+	
+	public int insertUser(LoginDto user) {
+		
+		int result = -1;
+		try {
+			conn = DAOBase.getInstance().getConnection();
+			sql = "insert into USER VALUES(?, ?, 0, 0)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getUser());
 			pstmt.setString(2, user.getPassword());

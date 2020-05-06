@@ -23,15 +23,23 @@
 			session.setAttribute("sessionMessage", "incorrect id or password!");
 			loginResult = 0;
 		}
+	} else if(strUser != null && passwd != null && signUpCheck.equals("on")) {
+		session.setAttribute("sessionMessage", "sign-up processing...");
+		loginController = new LoginController(strUser, passwd);
+		int check = loginController.signUp();
+		
+		if(check == 1) {
+			session.setAttribute("sessionMessage", "sign-up success!, log in please");
+		} else if(check == 2) {
+			session.setAttribute("sessionMessage", "sorry, try other names...");
+		} else {
+			session.setAttribute("sessionMessage", "DB connection failed, try agian later or contact the admin");
+		}
 	}
 	
 	if(logout != null) {
 		session.invalidate();
 		loginResult = 0;
-	}
-	
-	if(strUser != null && signUpCheck.equals("on")) {
-		session.setAttribute("sessionMessage", "sign-up processing...");
 	}
 	
 	
@@ -53,11 +61,13 @@
 	}
 
 	div.login {
+		text-align: center;
 		<%
 		if(loginResult == 0) {
 			%>display: none;<%
 		} else if(loginResult == 1) {
-			%>display: block;<%
+			%>display: block;
+			background-color: #f0f0f0;<%
 		}
 		%>
 	}

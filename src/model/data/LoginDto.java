@@ -29,4 +29,20 @@ public class LoginDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public int getHasSubject() {
+		return hasSubject;
+	}
+
+	public void setHasSubject(int hasSubject) {
+		this.hasSubject = hasSubject;
+	}
+
+	public int getHasPlan() {
+		return hasPlan;
+	}
+
+	public void setHasPlan(int hasPlan) {
+		this.hasPlan = hasPlan;
+	}
 }
