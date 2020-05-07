@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-// TODO revision
 public class LoginDao {
 	
 	private Connection conn;
@@ -84,30 +83,9 @@ public class LoginDao {
 		return result;
 	}
 	
-	//TODO revision
-	public int updateMember(LoginDto user) {
-		
-		int result = 0;
-		try {
-			conn = DAOBase.getInstance().getConnection();
-			sql = "UPDATE MEMBER SET EMAIL= ? WHERE ID = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUser());
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DAOBase.getInstance().closeDBResources(pstmt, conn);
-		}
-		
-		return result;
-	}
-	
-	//TODO revision
+	//TODO implement later
 	public int deleteMember(LoginDto user) {
 		return 0;
 	}
-	
 		
 }

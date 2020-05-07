@@ -10,7 +10,7 @@ import model.logic.InitSubject;
 public class SubjectController {
 	
 	private String user;
-	private SubjectDao subjectDb;
+	private SubjectDao subjectDao;
 	private SubjectDto subjectDto;
 	private InitSubject initSubject;
 	private List<SubjectDto> subjectList;
@@ -19,7 +19,7 @@ public class SubjectController {
 	public SubjectController(String user) {
 		this.user = user;
 		this.initSubject = new InitSubject();
-		this.subjectDb = new SubjectDao();
+		this.subjectDao = new SubjectDao();
 		this.subjectList = new ArrayList<>();
 	}
 	

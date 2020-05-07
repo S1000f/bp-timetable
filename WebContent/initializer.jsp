@@ -12,10 +12,10 @@
     
 <%!
 	// TODO implement later
-	String user = "mock";
-	//
-   	SubjectController subjectController = new SubjectController(user);
+	String user;
+	LoginController loginController;
 	CalController calController = new CalController(user);
+   	SubjectController subjectController = new SubjectController(user);
 	PlanController planController = new PlanController(user);
    
 	int on = 0;
@@ -25,10 +25,8 @@
 	String subjectName = "";
 	String year;
 	String month;
-	String message;
 	
 	// loginForm
-	LoginController loginController;
 	String strUser;
 	String passwd;
 	String signUpCheck;
@@ -42,6 +40,7 @@
 %>
 
 <%
+	
 	// TODO revison
 	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
 	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
@@ -52,11 +51,13 @@
 		
 		session.setAttribute("sessionYear", year);
 		session.setAttribute("sessionMonth", month);
+		
+		session.setAttribute("sessionMessage", "Calendar generated");
 	}
 	
 	weeks = calController.initCal(year, month);
 	session.setAttribute("sessionWeeks", weeks);
 	
 	weeksContainer = calController.getWeeksContainer();
-
+	
 %>

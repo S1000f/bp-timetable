@@ -6,12 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	body {
-		font-size: 14px;		
+	.messenger {
+		font-size: 14px;
+		font-weight: bolder;	
 	}
 </style>
 </head>
 <body>
+	<div class="messenger">
 	>>> <%=(String)Optional.ofNullable(session.getAttribute("sessionMessage")).orElse("log in or sign up, please") %>
+	</div>
 </body>
 </html>

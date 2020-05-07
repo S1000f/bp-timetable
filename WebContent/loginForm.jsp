@@ -13,10 +13,11 @@
 	
 	
 	if(strUser != null && passwd != null && signUpCheck.equals("off")) {
-		loginController = new LoginController(strUser, passwd);
-		loginResult = loginController.loginUser();
+		loginController = new LoginController();
+		loginResult = loginController.loginUser(strUser, passwd);
 		
 		if(loginResult == 1) {
+			user = strUser;
 			session.setAttribute("sessionUser", strUser);
 			session.setAttribute("sessionMessage", "log-in success");
 		} else {
@@ -25,8 +26,8 @@
 		}
 	} else if(strUser != null && passwd != null && signUpCheck.equals("on")) {
 		session.setAttribute("sessionMessage", "sign-up processing...");
-		loginController = new LoginController(strUser, passwd);
-		int check = loginController.signUp();
+		loginController = new LoginController();
+		int check = loginController.signUp(strUser, passwd);
 		
 		if(check == 1) {
 			session.setAttribute("sessionMessage", "sign-up success!, log in please");
@@ -35,6 +36,7 @@
 		} else {
 			session.setAttribute("sessionMessage", "DB connection failed, try agian later or contact the admin");
 		}
+		
 	}
 	
 	if(logout != null) {
@@ -95,10 +97,10 @@
 <body>
 	<div class="menu loginforms">
 		<div class="login">
-			<h5>Welcome!</h5><br />
+			<h5>Welcome!<br /><%=user %></h5><br />
 			<form method="get" action="index.jsp" >
 				<input type="text" name="logout" value="logout" class="logout" />
-				<input type="submit" value="logout">
+				<input type="submit" value="log out">
 			</form>
 		</div>
 		<form method="post" action="index.jsp" class="loginForm">

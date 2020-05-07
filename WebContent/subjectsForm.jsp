@@ -13,7 +13,7 @@
 	String teacher;
 	String desc;
 	
-	if(request.getParameter("sid") != null) {
+	if(request.getParameter("sid") != null && session.getAttribute("sessionUser") != null) {
 		sid = Integer.valueOf(request.getParameter("sid"));
 		subjectName = request.getParameter("subjectNamed");
 		colorTag = request.getParameter("colorTag");
@@ -24,6 +24,9 @@
 		subjectNamesList = subjectController.getSubjectNames();
 		
 		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
+		session.setAttribute("sessionMessage", "the subject added successfully!");
+	} else if(request.getParameter("sid") != null) {
+		session.setAttribute("sessionMessage", "please, Log in first!");
 	}
 	
 	%>
@@ -32,7 +35,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Subject Form</title>
 <style>
 	.nameTag {
 		display: inline-block;
