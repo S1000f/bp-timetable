@@ -15,9 +15,10 @@
 	String user;
 	LoginController loginController;
 	CalController calController = new CalController(user);
-   	SubjectController subjectController = new SubjectController(user);
+	
+   	SubjectController subjectController;
 	PlanController planController = new PlanController(user);
-   
+
 	int on = 0;
 	int subjectWeekPositon = 0;
 	int weeks;

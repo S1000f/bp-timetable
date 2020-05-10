@@ -20,6 +20,7 @@
 		teacher = Optional.ofNullable(request.getParameter("teacher")).orElse("teacher");
 		desc = Optional.ofNullable(request.getParameter("desc")).orElse(subjectName);
 		
+		subjectController = new SubjectController((String)session.getAttribute("sessionUser"));
 		subjectController.addSubject(sid, subjectName, colorTag, teacher, desc);
 		subjectNamesList = subjectController.getSubjectNames();
 		

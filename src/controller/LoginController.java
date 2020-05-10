@@ -22,9 +22,9 @@ public class LoginController {
 		LoginDto result = loginDao.loginUser(loginDto);
 		if(result != null && result.getUser().equals(loginDto.getUser()) && result.getPassword().equals(loginDto.getPassword())) {
 			loginDto = result;
-			return 1; // login success
+			return 1; // success
 		} else if(result == null) {
-			return 2; // no such a user or incorrect password
+			return 2; // no such a user or incorrect password error
 		}
 		
 		return 3;
@@ -39,10 +39,10 @@ public class LoginController {
 			if(check == 0 || check == -1) {
 				return 3; // SQL failed or DB connection error
 			} else {
-				return 1; // insert user success
+				return 1; // success
 			}
 		} else if(check == 2) {
-			return 2; // user exists
+			return 2; // user exists error
 		} else {
 			return 3; // DB connection error
 		}
