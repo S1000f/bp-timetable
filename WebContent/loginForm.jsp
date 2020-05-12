@@ -19,9 +19,9 @@
 		if(loginResult == 1) {
 			user = strUser;
 			session.setAttribute("sessionUser", strUser);
-			session.setAttribute("sessionMessage", "log-in success");
+			session.setAttribute("sessionMessage", "[SUCCESS] log-in success");
 		} else {
-			session.setAttribute("sessionMessage", "incorrect id or password!");
+			session.setAttribute("sessionMessage", "[failed] incorrect id or password!");
 			loginResult = 0;
 		}
 	} else if(strUser != null && passwd != null && signUpCheck.equals("on")) {
@@ -30,11 +30,11 @@
 		int check = loginController.signUp(strUser, passwd);
 		
 		if(check == 1) {
-			session.setAttribute("sessionMessage", "sign-up success!, log in please");
+			session.setAttribute("sessionMessage", "[SUCCESS] registered successfully!, log in please");
 		} else if(check == 2) {
-			session.setAttribute("sessionMessage", "sorry, try other names...");
+			session.setAttribute("sessionMessage", "[failed] sorry, try other names...");
 		} else {
-			session.setAttribute("sessionMessage", "DB connection failed, try agian later or contact the admin");
+			session.setAttribute("sessionMessage", "[failed] DB connection problems, try agian later or contact the admin");
 		}
 		
 	}

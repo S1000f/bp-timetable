@@ -25,9 +25,12 @@ public class SubjectController {
 	
 	public int addSubject(int sid, String subjectNamed, String color, String teacher, String desc) {
 		subjectDto = new SubjectDto(user, sid, subjectNamed, color, teacher, desc);
+		int result = subjectDao.insertSubject(subjectDto);
+		//
+		System.out.println(result);
 		subjectList = initSubject.addSubject(subjectDto);
 		
-		return 0;
+		return result;
 	}
 	
 	public List<String> getSubjectNames() {

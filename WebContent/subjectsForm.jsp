@@ -12,22 +12,29 @@
 	String colorTag;
 	String teacher;
 	String desc;
+	int addResult;
 	
 	if(request.getParameter("sid") != null && session.getAttribute("sessionUser") != null) {
 		sid = Integer.valueOf(request.getParameter("sid"));
 		subjectName = request.getParameter("subjectNamed");
 		colorTag = request.getParameter("colorTag");
-		teacher = Optional.ofNullable(request.getParameter("teacher")).orElse("teacher");
-		desc = Optional.ofNullable(request.getParameter("desc")).orElse(subjectName);
+		teacher = request.getParameter("teacher");
+		desc = request.getParameter("desc");
 		
 		subjectController = new SubjectController((String)session.getAttribute("sessionUser"));
-		subjectController.addSubject(sid, subjectName, colorTag, teacher, desc);
-		subjectNamesList = subjectController.getSubjectNames();
+		addResult = subjectController.addSubject(sid, subjectName, colorTag, teacher, desc);
+
+		if(addResult == 1) {
+			session.setAttribute("sessionMessage", "[SUCCESS] the subject added (SID: " + sid + " name: " + subjectName +")");
+		} else {
+			session.setAttribute("sessionMessage", "[failed] operation failed, retry please...");
+		}
 		
+		subjectNamesList = subjectController.getSubjectNames();
 		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
-		session.setAttribute("sessionMessage", "the subject added successfully!");
-	} else if(request.getParameter("sid") != null) {
-		session.setAttribute("sessionMessage", "please, Log in first!");
+		
+	} else if(request.getParameter("sid") != null && session.getAttribute("sessionUser") == null) {
+		session.setAttribute("sessionMessage", "[failed] please, Log in first!");
 	}
 	
 	%>
@@ -44,6 +51,7 @@
 		height: 14px;
 		width: 100px;
 	}
+	
 	input {
 		display: inline-block;
 	}

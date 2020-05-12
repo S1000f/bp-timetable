@@ -11,23 +11,20 @@ public class SubjectDao {
 	private String sql;
 	private ResultSet rs;
 	
-	public SubjectDao() {
-		
-	}
-	//TODO start here
-	public LoginDto loginUser(LoginDto user) {
+	// TODO revision
+	public SubjectDto readSubject(SubjectDto sub) {
 		
 		try {
 			conn = DAOBase.getInstance().getConnection();
 			sql = "select * from USER where USER = ? and PASSWD = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUser());
-			pstmt.setString(2, user.getPassword());
+			pstmt.setString(1, sub.getUser());
+			pstmt.setString(2, sub.getSubjectName());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				user = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"), rs.getInt("HAS_SUB"), rs.getInt("HAS_PLAN"));
-				return user;
+				//sub = new LoginDto(rs.getString("USER"), rs.getString("PASSWD"), rs.getInt("HAS_SUB"), rs.getInt("HAS_PLAN"));
+				return sub;
 			} else {
 				return null;
 			}
@@ -39,7 +36,7 @@ public class SubjectDao {
 		
 		return null;
 	}
-	
+	//TODO
 	public int checkUser(LoginDto user) {
 		
 		try {
@@ -63,17 +60,20 @@ public class SubjectDao {
 		return 3;
 	}
 	
-	public int insertUser(LoginDto user) {
+	public int insertSubject(SubjectDto sub) {
 		
 		int result = -1;
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "insert into USER VALUES(?, ?, 0, 0)";
+			sql = "insert into subject (user, sid, sub_name, color, teacher, description) VALUES(?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUser());
-			pstmt.setString(2, user.getPassword());
+			pstmt.setString(1, sub.getUser());
+			pstmt.setInt(2, sub.getSid());
+			pstmt.setString(3, sub.getSubjectName());
+			pstmt.setString(4, sub.getColorTag());
+			pstmt.setString(5, sub.getTeacher());
+			pstmt.setString(6, sub.getDesc());
 			result = pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
