@@ -106,7 +106,7 @@ public class SubjectDao {
 	}
 	
 	//TODO implement later
-	public int deleteMember(LoginDto user) {
+	public int deleteSubject(SubjectDto sub) {
 		return 0;
 	}
 		

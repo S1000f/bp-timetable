@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Arrays"%>
 <%@page import="model.data.SubjectDto"%>
 <%@page import="model.data.LoginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
@@ -12,8 +14,13 @@
 		session.setAttribute("sessionSubjectController", subjectController);
 		
 		subjectMap = subjectController.readSubject();
+		session.setAttribute("sessionSubjectMap", subjectMap);
+		
+		subjectNamesList = Optional.ofNullable(subjectController.getSubjectNames())
+				.orElse(new ArrayList<String>(Arrays.asList("---")));
+		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
+		
 	}
-
 
 %>
 
@@ -23,6 +30,7 @@
 <meta charset="UTF-8">
 <title>SubjectView</title>
 <style type="text/css">
+
 	.subjectView {
 		width: 380px;
 		height: 17px;
@@ -52,7 +60,7 @@
 			<div class="index desc" style="width: 170px" >description</div>
 		</div>
 		<div class="contents">
-			<% if(subjectMap != null &&  session.getAttribute("sessionUser") != null) {
+			<% if(subjectMap != null && session.getAttribute("sessionUser") != null) {
 				for(int i = 1; i <= subjectMap.size(); i++) {
 					%><div class="sub rownum" style="width: 15px"><%=i %></div>
 					<div class="sub color" style="width: 10px; background-color: <%=subjectMap.get(i).getColorTag()%>">&nbsp;</div>

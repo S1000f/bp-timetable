@@ -10,10 +10,10 @@
 
 	<%
 	int whichWeek;
-	String[] str;
-	String chosenSubject;
 	List<String> chosenWeek;
+	String[] str;
 	List<String> chosenDayList;
+	String chosenSubject;
 	
 	whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
 	chosenWeek = calController.getWeeksContainer().get(whichWeek);
@@ -21,15 +21,23 @@
 	str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"0"});
 	chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
+	subjectMap = (Map<Integer, SubjectDto>)session.getAttribute("sessionSubjectMap");
+	
 	subjectNamesList = Optional.ofNullable((List<String>)session.getAttribute("sessionSubjectNamesList"))
 			.orElse(new ArrayList<String>(Arrays.asList("---")));
 	
 	chosenSubject = Optional.ofNullable(request.getParameter("chooseSubject")).orElse("undefined");
 	
 	// TODO revision
-	if(chosenSubject != null) {
+	if(!chosenSubject.equals("undefined")) {
+		
+		planController = (PlanController)Optional.ofNullable(session.getAttribute("sessionPlanController"))
+				.orElse(new PlanController((String)session.getAttribute("sessionUser")));
+		session.setAttribute("sessionPlanController", planController);
+		
 		planController.savePlan(year, month, whichWeek, chosenDayList, chosenSubject);
 		weekPlanMap = planController.loadPlan();
+		
 	}
 	
 	
@@ -78,7 +86,12 @@
 		for(int i = 1; i <= 7; i++) {
 			%>.weekTable > .selection > input:nth-of-type(<%=i %>):checked ~ label.oneday:nth-of-type(<%=i %>) {
 	            background-color: Dodgerblue;
-	        }<%
+	        }
+	        
+	        .weekTable > .selection > input:nth-of-type(<%=i %>):hover ~ label.oneday:nth-of-type(<%=i %>) {
+	            background-color: Tomato;
+	        }
+	        <%
 		}
 		%>
 	
@@ -122,11 +135,14 @@
 				<br />
 				<label for="chooseSubject">subject:</label>
 				<select id="chooseSubject" name="chooseSubject">
-					<%
-					for(int i = 0; i < subjectNamesList.size(); i++) {
-						%><option value="<%=subjectNamesList.get(i) %>"><%=subjectNamesList.get(i) %></option><%
+				<%
+				if(session.getAttribute("sessionSubjectMap") != null && session.getAttribute("sessionUser") != null) {
+					for(int i = 1; i <= subjectMap.size(); i++) {
+						%><option value="<%=i %>">
+						<%=subjectMap.get(i).getSid() %>: <%=subjectMap.get(i).getSubjectName() %></option><%
 					}
-					%>
+				}
+				%>
 				</select>
 				<input type="submit" value="save plan" />
 			</form>

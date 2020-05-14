@@ -31,12 +31,11 @@
 			session.setAttribute("sessionMessage", "[SUCCESS] the subject added (SID: " + sid + " name: " + subjectName +")");
 			subjectMap = subjectController.readSubject();
 		} else if(addResult >= 10) {
-			session.setAttribute("sessionMessage", "[failed] you can save 10 subjects limit...");
+			session.setAttribute("sessionMessage", "[failed] you can save 10 subjects only...");
 		} else {
 			session.setAttribute("sessionMessage", "[failed] operation failed, retry please...");
 		}
 		
-		// TODO revision
 		subjectNamesList = subjectController.getSubjectNames();
 		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
 		
@@ -69,7 +68,7 @@
 	<div class="menu subjects">
 		<form method="get" action="index.jsp">
 			<label for="sid" class="nameTag">SID:</label>
-			<input type="number" name="sid" placeholder="required" min="1" max="999999" required /><br />
+			<input type="number" name="sid" placeholder="required, unique" min="1" max="999999" required /><br />
 			<label for="subjectNamed" class="nameTag">Subject Name:</label>
 			<input type="text" name="subjectNamed" placeholder="required" required/><br />
 			<label for="colorTag" class="nameTag">Color Tag:</label>

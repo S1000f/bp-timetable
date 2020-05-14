@@ -22,15 +22,11 @@ public class InitSubject {
 		return subjectList;
 	}
 	
-	public List<SubjectDto> getSubjectList() {
-		return subjectList;
-	}
-	
-	public List<String> getSubjectNames(List<SubjectDto> subjectList) {
+	public List<String> getSubjectNames(Map<Integer, SubjectDto> subjectMap) {
 		List<String> list = new ArrayList<>();
 		
-		for(int i = 0; i < subjectList.size(); i++) {
-			list.add(subjectList.get(i).getSubjectName());
+		for(int i = 1; i <= subjectMap.size(); i++) {
+			list.add(subjectMap.get(i).getSubjectName());
 		}
 		
 		return list;

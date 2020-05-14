@@ -12,14 +12,14 @@
 <%@page import="java.util.List"%>
     
 <%!
-	// TODO implement later
 	String user;
 	LoginController loginController;
 	CalController calController = new CalController(user);
 	
    	SubjectController subjectController;
-	PlanController planController = new PlanController(user);
+	PlanController planController;
 
+	// TODO revision
 	int on = 0;
 	int subjectWeekPositon = 0;
 	int weeks;
@@ -35,11 +35,10 @@
 	String logout;
 	
 	// subjectFrom, subjectView
-	Map<Integer, SubjectDto> subjectMap = null;
-	//
+	Map<Integer, SubjectDto> subjectMap;
+	List<String> subjectNamesList;
 	
 	Map<Integer, List<String>> weeksContainer;
-	List<String> subjectNamesList;
 	// TODO revision
 	Map<Integer, Map<Integer, String>> weekPlanMap;
 	Map<Integer, String> emptyMap;

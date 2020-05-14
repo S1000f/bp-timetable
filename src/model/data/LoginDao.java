@@ -84,7 +84,7 @@ public class LoginDao {
 	}
 	
 	//TODO implement later
-	public int deleteMember(LoginDto user) {
+	public int deleteUser(LoginDto user) {
 		return 0;
 	}
 		
