@@ -44,7 +44,7 @@ public class LoginDao {
 		
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "select * from USER where USER = ?";
+			sql = "select user from USER where USER = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getUser());
 			rs = pstmt.executeQuery();

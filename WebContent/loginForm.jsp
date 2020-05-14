@@ -11,15 +11,16 @@
 	signUpCheck = Optional.ofNullable(request.getParameter("sign-up")).orElse("off");
 	logout = request.getParameter("logout");
 	
-	
 	if(strUser != null && passwd != null && signUpCheck.equals("off")) {
 		loginController = new LoginController();
 		loginResult = loginController.loginUser(strUser, passwd);
 		
 		if(loginResult == 1) {
 			user = strUser;
+			session.setAttribute("sessionLoginDto", loginController.getLoginDto());
 			session.setAttribute("sessionUser", strUser);
 			session.setAttribute("sessionMessage", "[SUCCESS] log-in success");
+			request.setAttribute("login", "login");
 		} else {
 			session.setAttribute("sessionMessage", "[failed] incorrect id or password!");
 			loginResult = 0;
@@ -56,6 +57,7 @@
 
 	div.loginforms {
 		width: 130px;
+		height: 100px;
 	}
 	
 	input.input {

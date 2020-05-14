@@ -1,3 +1,4 @@
+<%@page import="model.data.SubjectDto"%>
 <%@page import="controller.LoginController"%>
 <%@page import="controller.PlanController"%>
 <%@page import="controller.CalController"%>
@@ -33,6 +34,10 @@
 	String signUpCheck;
 	String logout;
 	
+	// subjectFrom, subjectView
+	Map<Integer, SubjectDto> subjectMap = null;
+	//
+	
 	Map<Integer, List<String>> weeksContainer;
 	List<String> subjectNamesList;
 	// TODO revision
@@ -53,7 +58,7 @@
 		session.setAttribute("sessionYear", year);
 		session.setAttribute("sessionMonth", month);
 		
-		session.setAttribute("sessionMessage", "Calendar generated");
+		session.setAttribute("sessionMessage", "[SUCCESS] Calendar generated");
 	}
 	
 	weeks = calController.initCal(year, month);

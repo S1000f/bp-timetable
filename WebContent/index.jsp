@@ -11,7 +11,8 @@
 <style type="text/css">
 
 	.header {
-		
+		height: 170px;
+		overflow: hidden;
 	}
 	
 	.header > .menu {
@@ -26,6 +27,7 @@
 		<jsp:include page="loginForm.jsp" flush="false" />
 		<jsp:include page="calendarForm.jsp" flush="false" />
 		<jsp:include page="subjectsForm.jsp" flush="false" />
+		<jsp:include page="subjectView.jsp" flush="false" />
 		<jsp:include page="weekPlan.jsp" flush="false" />
 	</div>
 	<hr />

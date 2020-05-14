@@ -5,7 +5,7 @@
 
 <%@include file="initializer.jsp" %>
     
-	<%
+<%
 	
 	int sid;
 	String subjectName;
@@ -21,15 +21,22 @@
 		teacher = request.getParameter("teacher");
 		desc = request.getParameter("desc");
 		
-		subjectController = new SubjectController((String)session.getAttribute("sessionUser"));
+		subjectController = (SubjectController)Optional.ofNullable(session.getAttribute("sessionSubjectController"))
+				.orElse(new SubjectController((String)session.getAttribute("sessionUser")));
+		session.setAttribute("sessionSubjectController", subjectController);
+		
 		addResult = subjectController.addSubject(sid, subjectName, colorTag, teacher, desc);
 
 		if(addResult == 1) {
 			session.setAttribute("sessionMessage", "[SUCCESS] the subject added (SID: " + sid + " name: " + subjectName +")");
+			subjectMap = subjectController.readSubject();
+		} else if(addResult >= 10) {
+			session.setAttribute("sessionMessage", "[failed] you can save 10 subjects limit...");
 		} else {
 			session.setAttribute("sessionMessage", "[failed] operation failed, retry please...");
 		}
 		
+		// TODO revision
 		subjectNamesList = subjectController.getSubjectNames();
 		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
 		
@@ -37,7 +44,7 @@
 		session.setAttribute("sessionMessage", "[failed] please, Log in first!");
 	}
 	
-	%>
+%>
 	
 <!DOCTYPE html>
 <html>
@@ -52,8 +59,9 @@
 		width: 100px;
 	}
 	
-	input {
+	.subjects > form > input {
 		display: inline-block;
+		width: 100px;
 	}
 </style>
 </head>
@@ -61,7 +69,7 @@
 	<div class="menu subjects">
 		<form method="get" action="index.jsp">
 			<label for="sid" class="nameTag">SID:</label>
-			<input type="number" name="sid" placeholder="required" required /><br />
+			<input type="number" name="sid" placeholder="required" min="1" max="999999" required /><br />
 			<label for="subjectNamed" class="nameTag">Subject Name:</label>
 			<input type="text" name="subjectNamed" placeholder="required" required/><br />
 			<label for="colorTag" class="nameTag">Color Tag:</label>
