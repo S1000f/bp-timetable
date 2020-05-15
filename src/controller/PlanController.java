@@ -26,19 +26,13 @@ public class PlanController {
 		this.initplan = new InitPlan();
 	}
 	
-	// TODO revision
 	public int savePlan(String year, String month, int week, List<String> daylist, String sid) {
 		int result = 0;
 		int intYear = Integer.valueOf(year);
 		int intMonth = Integer.valueOf(month);
 		int intSid = Integer.valueOf(sid);
+		
 		weekPlanList = initplan.makePlanList(daylist, intSid);
-		
-		// TODO delete later
-		for (Integer e : weekPlanList) {
-			System.out.print(e + "\t");
-		}
-		
 		planDto = new PlanDto(user, intYear, intMonth, week, weekPlanList, intSid);
 		int checkResult = planDao.checkPlan(planDto);
 		
@@ -48,12 +42,13 @@ public class PlanController {
 		} else if(checkResult == 1) {
 			formerPlanList = planDao.getWeekPlan(planDto);
 			planDto = initplan.mergePlanList(formerPlanList, weekPlanList, planDto);
-			result = planDao.updatePlan(planDto);
+			result = planDao.insertPlan(planDto);
 			return result;
 		} else {
 			return -1; // DB connection failed
 		}
 		
+		// TODO revision
 		//weekPlanMap = initplan.makeWeekPlanMap(week, daylist, sid);
 		
 	}

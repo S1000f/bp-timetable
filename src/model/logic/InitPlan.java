@@ -1,7 +1,6 @@
 package model.logic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -50,8 +49,13 @@ public class InitPlan {
 	}
 	
 	public PlanDto mergePlanList(List<Integer> oldList, List<Integer> newList, PlanDto planDto) {
+		for(int i = 0; i < 7; i++) {
+			if(newList.get(i) != 0) {
+				oldList.add(i, newList.get(i));
+			}
+		}
 		
-		
+		planDto.setPlanList(oldList);
 		
 		return planDto;
 	}
