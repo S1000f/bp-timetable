@@ -5,21 +5,21 @@ import java.util.List;
 public class PlanDto {
 	
 	private String user;
-	private String year;
-	private String month;
+	private int year;
+	private int month;
 	private int week;
-	private List<String> days;
-	private String subjectName;
+	private List<Integer> planList;
+	private int sid;
 	
-	public PlanDto(String user, String year, String month, int week, List<String> days, String subjectName) {
+	public PlanDto(String user, int year, int month, int week, List<Integer> list, int sid) {
 		this.user = user;
 		this.year = year;
 		this.month = month;
 		this.week = week;
-		this.days = days;
-		this.subjectName = subjectName;
+		this.planList = list;
+		this.sid = sid;
 	}
-	
+
 	public String getUser() {
 		return user;
 	}
@@ -28,19 +28,19 @@ public class PlanDto {
 		this.user = user;
 	}
 
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
-	public String getMonth() {
+	public int getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(int month) {
 		this.month = month;
 	}
 
@@ -52,21 +52,22 @@ public class PlanDto {
 		this.week = week;
 	}
 
-	public List<String> getDays() {
-		return days;
+	public List<Integer> getPlanList() {
+		return planList;
 	}
 
-	public void setDays(List<String> days) {
-		this.days = days;
+	public void setPlanList(List<Integer> list) {
+		this.planList = list;
 	}
 
-	public String getSubjectName() {
-		return subjectName;
+	public int getSid() {
+		return sid;
 	}
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
+	public void setSid(int sid) {
+		this.sid = sid;
 	}
-
+	
+	
 	
 }

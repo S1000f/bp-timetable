@@ -31,12 +31,6 @@ public class MyCal {
 	public int getLastDay() {
 		return lastDay;
 	}
-
-	// TODO delete later
-	public static void main(String[] args) {
-		
-		
-	}
 	
 }
 

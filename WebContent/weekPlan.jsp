@@ -15,16 +15,17 @@
 	List<String> chosenDayList;
 	String chosenSubject;
 	
-	whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("0"));
+	whichWeek = Integer.valueOf(Optional.ofNullable(request.getParameter("chooseWeek")).orElse("-1"));
+	if(whichWeek != -1) {
+		session.setAttribute("sessionWhichWeek", whichWeek);
+	}
+	
 	chosenWeek = calController.getWeeksContainer().get(whichWeek);
 	
 	str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"0"});
 	chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
 	subjectMap = (Map<Integer, SubjectDto>)session.getAttribute("sessionSubjectMap");
-	
-	subjectNamesList = Optional.ofNullable((List<String>)session.getAttribute("sessionSubjectNamesList"))
-			.orElse(new ArrayList<String>(Arrays.asList("---")));
 	
 	chosenSubject = Optional.ofNullable(request.getParameter("chooseSubject")).orElse("undefined");
 	
@@ -35,8 +36,16 @@
 				.orElse(new PlanController((String)session.getAttribute("sessionUser")));
 		session.setAttribute("sessionPlanController", planController);
 		
-		planController.savePlan(year, month, whichWeek, chosenDayList, chosenSubject);
-		weekPlanMap = planController.loadPlan();
+		whichWeek = (int)session.getAttribute("sessionWhichWeek");
+		
+		int result = planController.savePlan(year, month, whichWeek, chosenDayList, chosenSubject);
+		if(result == 1) {
+			session.setAttribute("sessionMessage", "[SUCCESS] the plan saved");
+		} else if(result == -1) {
+			session.setAttribute("sessionMessage", "[failed] DB connection error...");
+		}
+		
+		//weekPlanMap = planController.loadPlan();
 		
 	}
 	
@@ -138,7 +147,7 @@
 				<%
 				if(session.getAttribute("sessionSubjectMap") != null && session.getAttribute("sessionUser") != null) {
 					for(int i = 1; i <= subjectMap.size(); i++) {
-						%><option value="<%=i %>">
+						%><option value="<%=subjectMap.get(i).getSid() %>">
 						<%=subjectMap.get(i).getSid() %>: <%=subjectMap.get(i).getSubjectName() %></option><%
 					}
 				}

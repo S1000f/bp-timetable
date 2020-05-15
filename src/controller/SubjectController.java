@@ -1,8 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import model.data.SubjectDao;
@@ -15,7 +13,6 @@ public class SubjectController {
 	private SubjectDao subjectDao;
 	private SubjectDto subjectDto;
 	private InitSubject initSubject;
-	private List<String> subjectNamesList;
 	private Map<Integer, SubjectDto> subjectMap;
 	
 	public SubjectController(String user) {
@@ -23,7 +20,6 @@ public class SubjectController {
 		this.subjectDao = new SubjectDao();
 		this.subjectDto = new SubjectDto(user, 0, "", "", "", "");
 		this.initSubject = new InitSubject();
-		this.subjectNamesList = new ArrayList<>();
 		this.subjectMap = new HashMap<>();
 	}
 	
@@ -59,10 +55,6 @@ public class SubjectController {
 		return subjectMap;
 	}
 	
-	public List<String> getSubjectNames() {
-		subjectNamesList = initSubject.getSubjectNames(subjectMap);
-		return subjectNamesList;
-	}
 }
 
 

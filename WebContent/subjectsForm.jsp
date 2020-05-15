@@ -36,9 +36,6 @@
 			session.setAttribute("sessionMessage", "[failed] operation failed, retry please...");
 		}
 		
-		subjectNamesList = subjectController.getSubjectNames();
-		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
-		
 	} else if(request.getParameter("sid") != null && session.getAttribute("sessionUser") == null) {
 		session.setAttribute("sessionMessage", "[failed] please, Log in first!");
 	}

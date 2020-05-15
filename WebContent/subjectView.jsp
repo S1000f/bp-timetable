@@ -16,10 +16,6 @@
 		subjectMap = subjectController.readSubject();
 		session.setAttribute("sessionSubjectMap", subjectMap);
 		
-		subjectNamesList = Optional.ofNullable(subjectController.getSubjectNames())
-				.orElse(new ArrayList<String>(Arrays.asList("---")));
-		session.setAttribute("sessionSubjectNamesList", subjectNamesList);
-		
 	}
 
 %>
@@ -60,16 +56,18 @@
 			<div class="index desc" style="width: 170px" >description</div>
 		</div>
 		<div class="contents">
-			<% if(subjectMap != null && session.getAttribute("sessionUser") != null) {
+			<% 
+			if(subjectMap != null && session.getAttribute("sessionUser") != null) {
 				for(int i = 1; i <= subjectMap.size(); i++) {
 					%><div class="sub rownum" style="width: 15px"><%=i %></div>
 					<div class="sub color" style="width: 10px; background-color: <%=subjectMap.get(i).getColorTag()%>">&nbsp;</div>
 					<div class="sub sid" style="width: 40px" ><%=String.valueOf(subjectMap.get(i).getSid()) %> </div>
 					<div class="sub subject" style="width: 60px" ><%=subjectMap.get(i).getSubjectName() %> </div>
 					<div class="sub teacher" style="width: 60px" ><%=subjectMap.get(i).getTeacher() %>.</div>
-					<div class="sub desc" style="width: 170px" ><%=subjectMap.get(i).getDesc() %>.</div>
-				<%}
-			} %>
+					<div class="sub desc" style="width: 170px" ><%=subjectMap.get(i).getDesc() %>.</div><%
+				}
+			}
+			%>
 		</div>
 	</div>
 </body>
