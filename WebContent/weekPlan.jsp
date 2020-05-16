@@ -45,8 +45,6 @@
 			session.setAttribute("sessionMessage", "[failed] DB connection error...");
 		}
 		
-		//weekPlanMap = planController.loadPlan();
-		
 	}
 	
 	%>

@@ -16,10 +16,6 @@ public class LoginController {
 		this.hasPlan = 0;
 	}
 	
-	public LoginDto getLoginDto() {
-		return loginDto;
-	}
-	
 	public int loginUser(String user, String password) {
 		loginDto.setUser(user);
 		loginDto.setPassword(password);

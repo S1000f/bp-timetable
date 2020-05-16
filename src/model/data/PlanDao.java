@@ -1,5 +1,6 @@
 package model.data;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class PlanDao {
 	
@@ -15,25 +18,31 @@ public class PlanDao {
 	private String sql;
 	private ResultSet rs;
 	
-	// TODO revision
-	public Map<Integer, SubjectDto> readPlan(PlanDto plan) {
+	public Map<Integer, List<Integer>> readMonthPlan(String user, int year, int month) {
 		
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "select * from subject where user = ?";
+			sql = "select week, mon,tue,wed,thur,fri,sat,sun from plan where user = ? and year = ? and month = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, plan.getUser());
+			pstmt.setString(1, user);
+			pstmt.setInt(2, year);
+			pstmt.setInt(3, month);
 			rs = pstmt.executeQuery();
 			
-			Map<Integer, SubjectDto> subjectMap = new HashMap<>();
-			for(int i = 1; rs.next(); i++) {
-				subjectMap.put(i, new SubjectDto(
-						rs.getString("user"), rs.getInt("sid"), rs.getString("sub_name"),
-						rs.getString("color"), rs.getString("teacher"),
-						rs.getString("description")));
+			Map<Integer, List<Integer>> planMap = new TreeMap<>();
+			while(rs.next()) {
+				List<Integer> list = new ArrayList<>();
+				list.add(rs.getInt("mon"));
+				list.add(rs.getInt("tue"));
+				list.add(rs.getInt("wed"));
+				list.add(rs.getInt("thur"));
+				list.add(rs.getInt("fri"));
+				list.add(rs.getInt("sat"));
+				list.add(rs.getInt("sun"));
+				planMap.put(rs.getInt("week"), list);
 			}
 			
-			return subjectMap;
+			return planMap;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,6 +77,33 @@ public class PlanDao {
 			}
 			
 			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DAOBase.getInstance().closeDBResources(rs, pstmt, conn);
+		}
+		
+		return null;
+	}
+	
+	public Map<Integer, Map<String, String>> getSubNameAndTag(String user) {
+		
+		try {
+			conn = DAOBase.getInstance().getConnection();
+			sql = "select sid, sub_name, color from subject where user = ? order by sid asc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user);
+			rs = pstmt.executeQuery();
+			
+			Map<Integer, Map<String, String>> subNameAndTagMap = new TreeMap<>(); 
+			while(rs.next()) {
+				Map<String, String> temp = new HashMap<>();
+				temp.put(rs.getString("sub_name"), rs.getString("color"));
+				subNameAndTagMap.put(rs.getInt("sid"), temp);
+			}
+			
+			return subNameAndTagMap;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,14 +170,16 @@ public class PlanDao {
 		int result = -1;
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "insert into subject (user, sid, sub_name, color, teacher, description) VALUES(?, ?, ?, ?, ?, ?)";
+			sql = "update plan set mon=?, tue=?, wed=?, thur=?, fri=?, sat=?, sun=? where user = ? and year = ? and month = ?"
+					+ " and week = ?";
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, sub.getUser());
-//			pstmt.setInt(2, sub.getSid());
-//			pstmt.setString(3, sub.getSubjectName());
-//			pstmt.setString(4, sub.getColorTag());
-//			pstmt.setString(5, sub.getTeacher());
-//			pstmt.setString(6, sub.getDesc());
+			for(int i = 0; i < 7; i++) {
+				pstmt.setInt(i + 1, plan.getPlanList().get(i));
+			}
+			pstmt.setString(8, plan.getUser());
+			pstmt.setInt(9, plan.getYear());
+			pstmt.setInt(10, plan.getMonth());
+			pstmt.setInt(11, plan.getWeek());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

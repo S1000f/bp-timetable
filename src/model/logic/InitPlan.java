@@ -1,42 +1,29 @@
 package model.logic;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
+import model.data.PlanDao;
 import model.data.PlanDto;
 
 public class InitPlan {
 	
-	private Map<Integer, Map<Integer, String>> weekPlanMap;
-	private Map<Integer, String> plan;
 	private List<Integer> weekPlanList;
+	private List<Integer> sidList;
+	private Set<Integer> sidSet;
+	private Map<Integer, Map<String,String>> subNameAndTagMap;
+	private Map<Integer, Map<String, String>> monthPlanMap;
 	
 	public InitPlan() {
-		weekPlanMap = new TreeMap<>();
-		plan = new TreeMap<>();
-	}
-	
-	// TODO revision <week <day, subject>>
-	public Map<Integer, Map<Integer, String>> makeWeekPlanMap(int week, List<String> list, String name) {
-		for(int i = 0; i < list.size(); i++) {
-			plan.put(Integer.valueOf(list.get(i)), name);
-		}
-		
-		for(int i = 0; i < 7; i++) {
-			if(plan.get(i) == null) {
-				plan.put(i, "");
-			}
-		}
-		
-		weekPlanMap.put(week, plan);
-		return weekPlanMap;
+		this.weekPlanList = new ArrayList<>();
 	}
 	
 	public List<Integer> makePlanList(List<String> daylist, int sid) {
-		weekPlanList = new ArrayList<>();
-		
 		for(int i = 0; i < 7; i++) {
 			if(daylist.contains(String.valueOf(i))) {
 				weekPlanList.add(sid);
@@ -58,6 +45,35 @@ public class InitPlan {
 		planDto.setPlanList(oldList);
 		
 		return planDto;
+	}
+	
+	public Map<Integer, Map<String, String>> buildMonthPlanMap(
+			String user, Map<Integer, List<Integer>> planMap, PlanDao planDao, Map<Integer, List<String>> weeksContainer) {
+		sidSet = new HashSet<>();
+		
+		Set<Integer> keySet = planMap.keySet();
+		for(Integer n : keySet) {
+			sidSet.addAll(planMap.get(n));
+		}
+		sidSet.remove(0);
+		sidList = new ArrayList<>(sidSet);
+		Collections.sort(sidList);
+		
+		subNameAndTagMap = planDao.getSubNameAndTag(user);
+		
+		
+		
+		//TODO delete
+		System.out.println(planMap);
+		System.out.println(subNameAndTagMap);
+		System.out.println(weeksContainer);
+		
+		for(int i = 1; i <= weeksContainer.size(); i++) {
+			
+		}
+		
+		
+		return new TreeMap<>();
 	}
 	
 }

@@ -2,6 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@include file="initializer.jsp" %>
 
+<%
+	Map<Integer, List<Integer>> planMap;
+
+	if(request.getParameter("year") != null && session.getAttribute("sessionUser") != null) {
+		planController = new PlanController((String)session.getAttribute("sessionUser"));
+		planMap = planController.readPlan(year, month, weeksContainer);
+		
+	}
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,26 +78,6 @@
 					font-size: 14px;
 				}
 				
-				<%
-				// TODO revison
-				if(on == 1) {
-					%>.container > .cal > .rows > .day > div.subject {
-						background-color: dodgerblue;
-					}<%
-				} else {
-					
-				}
-				%>
-				
-				<%
-				// TODO revision
-				if(on == 1) {
-					%>.container > .cal > .week<%= subjectWeekPositon %> > .day > div.subject {
-					}<%
-				} else {
-					
-				}
-				%>
 				
 </style>
 </head>
@@ -109,7 +100,8 @@
 					%><div class="rows week<%=i %>"><%
 					for(int j = 0; j < weeksContainer.get(i).size(); j++) {
 						%><div class="day oneday d<%= weeksContainer.get(i).get(j) %>"><%=weeksContainer.get(i).get(j) %>
-							<div class="subject s<%= weeksContainer.get(i).get(j) %>"><%=j %></div>
+							<div class="subject s<%= weeksContainer.get(i).get(j) %>" style="background-color: dodgerblue;">
+							<%=j %></div>
 						</div><%
 					}
 					%></div><%

@@ -17,10 +17,10 @@
 		
 		if(loginResult == 1) {
 			user = strUser;
-			session.setAttribute("sessionLoginDto", loginController.getLoginDto());
 			session.setAttribute("sessionUser", strUser);
 			session.setAttribute("sessionMessage", "[SUCCESS] log-in success");
 			request.setAttribute("login", "login");
+			
 		} else {
 			session.setAttribute("sessionMessage", "[failed] incorrect id or password!");
 			loginResult = 0;

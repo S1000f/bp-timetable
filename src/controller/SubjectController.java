@@ -23,10 +23,6 @@ public class SubjectController {
 		this.subjectMap = new HashMap<>();
 	}
 	
-	public SubjectDto getSubjectDto() {
-		return subjectDto;
-	}
-	
 	public int addSubject(int sid, String subjectNamed, String color, String teacher, String desc) {
 		subjectDto = new SubjectDto(user, sid, subjectNamed, color, teacher, desc);
 		int numOfSub = subjectDao.readNumOfSub(subjectDto);
@@ -56,10 +52,6 @@ public class SubjectController {
 	}
 	
 }
-
-
-
-
 
 
 

@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,16 +12,14 @@ public class PlanController {
 	private String user;
 	private PlanDao planDao;
 	private PlanDto planDto;
-	private List<String> chosenDayList;
-	private Map<Integer, Map<Integer, String>> weekPlanMap;
 	private InitPlan initplan;
 	private List<Integer> weekPlanList;
 	private List<Integer> formerPlanList;
+	private Map<Integer, List<Integer>> planMap;
 	
 	public PlanController(String user) {
 		this.user = user;
 		this.planDao = new PlanDao();
-		this.chosenDayList = new ArrayList<>();
 		this.initplan = new InitPlan();
 	}
 	
@@ -42,20 +39,23 @@ public class PlanController {
 		} else if(checkResult == 1) {
 			formerPlanList = planDao.getWeekPlan(planDto);
 			planDto = initplan.mergePlanList(formerPlanList, weekPlanList, planDto);
-			result = planDao.insertPlan(planDto);
+			result = planDao.updatePlan(planDto);
 			return result;
 		} else {
 			return -1; // DB connection failed
 		}
 		
-		// TODO revision
-		//weekPlanMap = initplan.makeWeekPlanMap(week, daylist, sid);
-		
 	}
 	
-	public Map<Integer, Map<Integer, String>> loadPlan() {
-		// make DB read method via PlanDB
-		return weekPlanMap;
+	public Map<Integer, List<Integer>> readPlan(String year, String month, Map<Integer,List<String>> weeksContainer) {
+		int intYear = Integer.valueOf(year);
+		int intMonth = Integer.valueOf(month);
+		planMap = planDao.readMonthPlan(user, intYear, intMonth);
+		
+		initplan.buildMonthPlanMap(user, planMap, planDao, weeksContainer);
+		
+		
+		return planMap;
 	}
 	
 }

@@ -15,33 +15,24 @@
 	String user;
 	LoginController loginController;
 	CalController calController = new CalController(user);
-	
    	SubjectController subjectController;
 	PlanController planController;
 
-	// TODO revision
-	int on = 0;
-	int subjectWeekPositon = 0;
 	int weeks;
 	int loginResult;
-	String subjectName = "";
 	String year;
 	String month;
 	
-	// loginForm
+	// loginForm.jsp
 	String strUser;
 	String passwd;
 	String signUpCheck;
 	String logout;
 	
-	// subjectFrom, subjectView
+	// subjectFrom.jsp, subjectView.jsp
 	Map<Integer, SubjectDto> subjectMap;
-	List<String> subjectNamesList;
-	
+	// calendar.jsp
 	Map<Integer, List<String>> weeksContainer;
-	// TODO revision
-	Map<Integer, Map<Integer, String>> weekPlanMap;
-	Map<Integer, String> emptyMap;
 %>
 
 <%
