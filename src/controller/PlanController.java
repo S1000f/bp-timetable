@@ -54,8 +54,15 @@ public class PlanController {
 		
 		initplan.buildMonthPlanMap(user, planMap, planDao, weeksContainer);
 		
-		
 		return planMap;
+	}
+	
+	public Map<Integer,List<String>> getSubNamesMap() {
+		return initplan.getWeekSubNames();
+	}
+	
+	public Map<Integer, List<String>> getSubTagsMap() {
+		return initplan.getWeekSubTags();
 	}
 	
 }

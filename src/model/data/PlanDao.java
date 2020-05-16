@@ -1,14 +1,11 @@
 package model.data;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 public class PlanDao {
@@ -75,7 +72,6 @@ public class PlanDao {
 				list.add(rs.getInt("sat"));
 				list.add(rs.getInt("sun"));
 			}
-			
 			return list;
 			
 		} catch (Exception e) {
@@ -87,23 +83,46 @@ public class PlanDao {
 		return null;
 	}
 	
-	public Map<Integer, Map<String, String>> getSubNameAndTag(String user) {
+	public Map<Integer, String> getSubNamesMap(String user) {
 		
 		try {
 			conn = DAOBase.getInstance().getConnection();
-			sql = "select sid, sub_name, color from subject where user = ? order by sid asc";
+			sql = "select sid, sub_name from subject where user = ? order by sid asc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user);
 			rs = pstmt.executeQuery();
 			
-			Map<Integer, Map<String, String>> subNameAndTagMap = new TreeMap<>(); 
+			Map<Integer, String> temp = new TreeMap<>(); 
 			while(rs.next()) {
-				Map<String, String> temp = new HashMap<>();
-				temp.put(rs.getString("sub_name"), rs.getString("color"));
-				subNameAndTagMap.put(rs.getInt("sid"), temp);
+				temp.put(rs.getInt("sid"), rs.getString("sub_name"));
 			}
 			
-			return subNameAndTagMap;
+			return temp;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DAOBase.getInstance().closeDBResources(rs, pstmt, conn);
+		}
+		
+		return null;
+	}
+	
+	public Map<Integer, String> getSubTagsMap(String user) {
+		
+		try {
+			conn = DAOBase.getInstance().getConnection();
+			sql = "select sid, color from subject where user = ? order by sid asc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user);
+			rs = pstmt.executeQuery();
+			
+			Map<Integer, String> temp = new TreeMap<>(); 
+			while(rs.next()) {
+				temp.put(rs.getInt("sid"), rs.getString("color"));
+			}
+			
+			return temp;
 			
 		} catch (Exception e) {
 			e.printStackTrace();

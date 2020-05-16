@@ -25,12 +25,18 @@
 	str = Optional.ofNullable(request.getParameterValues("checkbox")).orElse(new String[] {"0"});
 	chosenDayList = new ArrayList<>(Arrays.asList(str));
 	
-	subjectMap = (Map<Integer, SubjectDto>)session.getAttribute("sessionSubjectMap");
+	subjectMap = (Map<Integer, SubjectDto>) session.getAttribute("sessionSubjectMap");
 	
 	chosenSubject = Optional.ofNullable(request.getParameter("chooseSubject")).orElse("undefined");
 	
 	// TODO revision
 	if(!chosenSubject.equals("undefined")) {
+		subjectController = (SubjectController)Optional.ofNullable(session.getAttribute("sessionSubjectController"))
+				.orElse(new SubjectController((String)session.getAttribute("sessionUser")));
+		session.setAttribute("sessionSubjectController", subjectController);
+		
+		subjectMap = subjectController.readSubject();
+		session.setAttribute("sessionSubjectMap", subjectMap);
 		
 		planController = (PlanController)Optional.ofNullable(session.getAttribute("sessionPlanController"))
 				.orElse(new PlanController((String)session.getAttribute("sessionUser")));
@@ -140,7 +146,7 @@
 				<label for="chooseSubject">subject:</label>
 				<select id="chooseSubject" name="chooseSubject">
 				<%
-				if(session.getAttribute("sessionSubjectMap") != null && session.getAttribute("sessionUser") != null) {
+				if(session.getAttribute("sessionUser") != null) {
 					for(int i = 1; i <= subjectMap.size(); i++) {
 						%><option value="<%=subjectMap.get(i).getSid() %>">
 						<%=subjectMap.get(i).getSid() %>: <%=subjectMap.get(i).getSubjectName() %></option><%

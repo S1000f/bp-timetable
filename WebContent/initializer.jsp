@@ -33,6 +33,10 @@
 	Map<Integer, SubjectDto> subjectMap;
 	// calendar.jsp
 	Map<Integer, List<String>> weeksContainer;
+	
+	Map<Integer, List<Integer>> planMap;
+	Map<Integer, List<String>> subNamesMap;
+	Map<Integer, List<String>> subTagsMap;
 %>
 
 <%
@@ -55,5 +59,15 @@
 	session.setAttribute("sessionWeeks", weeks);
 	
 	weeksContainer = calController.getWeeksContainer();
+	
+
+	if(session.getAttribute("sessionUser") != null) {
+		planController = new PlanController((String)session.getAttribute("sessionUser"));
+		planMap = planController.readPlan(year, month, weeksContainer);
+		
+		subNamesMap = planController.getSubNamesMap();
+		subTagsMap = planController.getSubTagsMap();
+		
+	}
 	
 %>

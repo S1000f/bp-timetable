@@ -3,13 +3,7 @@
 <%@include file="initializer.jsp" %>
 
 <%
-	Map<Integer, List<Integer>> planMap;
-
-	if(request.getParameter("year") != null && session.getAttribute("sessionUser") != null) {
-		planController = new PlanController((String)session.getAttribute("sessionUser"));
-		planMap = planController.readPlan(year, month, weeksContainer);
-		
-	}
+	
 
 %>
 
@@ -100,8 +94,8 @@
 					%><div class="rows week<%=i %>"><%
 					for(int j = 0; j < weeksContainer.get(i).size(); j++) {
 						%><div class="day oneday d<%= weeksContainer.get(i).get(j) %>"><%=weeksContainer.get(i).get(j) %>
-							<div class="subject s<%= weeksContainer.get(i).get(j) %>" style="background-color: dodgerblue;">
-							<%=j %></div>
+							<div class="subject s<%= weeksContainer.get(i).get(j) %>" style="background-color:<%=Optional.ofNullable(subTagsMap.get(i).get(j)).orElse("#ffffff") %>">
+							<%=Optional.ofNullable(subNamesMap.get(i).get(j)).orElse("-") %></div>
 						</div><%
 					}
 					%></div><%
