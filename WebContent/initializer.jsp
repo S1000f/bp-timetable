@@ -69,7 +69,7 @@
 				subNamesMap = planController.getSubNamesMap();
 				subTagsMap = planController.getSubTagsMap();
 			} else {
-				planController = new PlanController((String)session.getAttribute("GUEST"));
+				planController = new PlanController((String)session.getAttribute("guest"));
 				planMap = planController.readPlan(year, month, weeksContainer);
 				subNamesMap = planController.getSubNamesMap();
 				subTagsMap = planController.getSubTagsMap();
