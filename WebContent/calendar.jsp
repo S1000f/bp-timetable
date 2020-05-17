@@ -1,9 +1,10 @@
+<%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="initializer.jsp" %>
 
 <%
-	
+	List<String> empty = new ArrayList<>(Arrays.asList("e","","","","","",""));
 
 %>
 
@@ -90,15 +91,20 @@
 					<div class="day sun">Sun</div>
 				</div>
 				<%
-				for(int i = 1; i <= weeks; i++) {
-					%><div class="rows week<%=i %>"><%
-					for(int j = 0; j < weeksContainer.get(i).size(); j++) {
-						%><div class="day oneday d<%= weeksContainer.get(i).get(j) %>"><%=weeksContainer.get(i).get(j) %>
-							<div class="subject s<%= weeksContainer.get(i).get(j) %>" style="background-color:<%=Optional.ofNullable(subTagsMap.get(i).get(j)).orElse("#ffffff") %>">
-							<%=Optional.ofNullable(subNamesMap.get(i).get(j)).orElse("-") %></div>
-						</div><%
+				try{
+					for(int i = 1; i <= weeks; i++) {
+						%><div class="rows week<%=i %>"><%
+						for(int j = 0; j < weeksContainer.get(i).size(); j++) {
+							%><div class="day oneday d<%= weeksContainer.get(i).get(j) %>"><%=weeksContainer.get(i).get(j) %>
+								<div class="subject s<%= weeksContainer.get(i).get(j) %>" style="background-color:
+								<%=subTagsMap.getOrDefault(i, empty).get(j) %>">
+								<%=subNamesMap.getOrDefault(i, empty).get(j) %></div>
+							</div><%
+						}
+						%></div><%
 					}
-					%></div><%
+				} catch(NullPointerException e) {
+					e.printStackTrace();
 				}
 				%>
 			</div>		

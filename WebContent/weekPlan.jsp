@@ -146,11 +146,15 @@
 				<label for="chooseSubject">subject:</label>
 				<select id="chooseSubject" name="chooseSubject">
 				<%
-				if(session.getAttribute("sessionUser") != null) {
-					for(int i = 1; i <= subjectMap.size(); i++) {
-						%><option value="<%=subjectMap.get(i).getSid() %>">
-						<%=subjectMap.get(i).getSid() %>: <%=subjectMap.get(i).getSubjectName() %></option><%
+				try {
+					if(session.getAttribute("sessionUser") != null) {
+						for(int i = 1; i <= subjectMap.size(); i++) {
+							%><option value="<%=subjectMap.get(i).getSid() %>">
+							<%=subjectMap.get(i).getSid() %>: <%=subjectMap.get(i).getSubjectName() %></option><%
+						}
 					}
+				}catch (NullPointerException e) {
+					e.printStackTrace();
 				}
 				%>
 				</select>

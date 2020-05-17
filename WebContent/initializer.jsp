@@ -19,7 +19,7 @@
 	PlanController planController;
 
 	int weeks;
-	int loginResult;
+	int loginResult = 0;
 	String year;
 	String month;
 	
@@ -62,12 +62,21 @@
 	
 
 	if(session.getAttribute("sessionUser") != null) {
-		planController = new PlanController((String)session.getAttribute("sessionUser"));
-		planMap = planController.readPlan(year, month, weeksContainer);
-		
-		subNamesMap = planController.getSubNamesMap();
-		subTagsMap = planController.getSubTagsMap();
-		
+		try{
+			if(session.getAttribute("sessionID").equals(session.getId())) {
+				planController = new PlanController((String)session.getAttribute("sessionUser"));
+				planMap = planController.readPlan(year, month, weeksContainer);
+				subNamesMap = planController.getSubNamesMap();
+				subTagsMap = planController.getSubTagsMap();
+			} else {
+				planController = new PlanController((String)session.getAttribute("GUEST"));
+				planMap = planController.readPlan(year, month, weeksContainer);
+				subNamesMap = planController.getSubNamesMap();
+				subTagsMap = planController.getSubTagsMap();
+			}
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 %>

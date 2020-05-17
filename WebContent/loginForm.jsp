@@ -17,8 +17,9 @@
 		
 		if(loginResult == 1) {
 			user = strUser;
+			session.setAttribute("sessionID", session.getId());
 			session.setAttribute("sessionUser", strUser);
-			session.setAttribute("sessionMessage", "[SUCCESS] log-in success");
+			session.setAttribute("sessionMessage", "[SUCCESS] log-in success ");
 			request.setAttribute("login", "login");
 			
 		} else {

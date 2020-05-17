@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList" %>
+<%@ page import="java.util.Optional" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,11 @@
 		display: inline-block;
 		margin: 0 20px 0 10px;
 	}
+	
+	.messenger {
+		font-size: 14px;
+		font-weight: bolder;	
+	}
 
 </style>
 </head>
@@ -31,9 +37,7 @@
 		<jsp:include page="weekPlan.jsp" flush="false" />
 	</div>
 	<hr />
-	<div class="include message">
 		<jsp:include page="message.jsp" flush="false" />
-	</div>
 	<hr />
 	<div class="include calendar">
 		<jsp:include page="calendar.jsp" flush="false" />
