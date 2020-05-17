@@ -12,25 +12,18 @@
 <%@page import="java.util.List"%>
     
 <%!
-	String user;
 	LoginController loginController;
-	CalController calController = new CalController(user);
+	CalController calController = new CalController("geust");
    	SubjectController subjectController;
 	PlanController planController;
 
 	int weeks;
-	int loginResult = 0;
 	String year;
 	String month;
 	
-	// loginForm.jsp
-	String strUser;
-	String passwd;
-	String signUpCheck;
-	String logout;
-	
-	// subjectFrom.jsp, subjectView.jsp
+	//subjectFrom.jsp, subjectView.jsp
 	Map<Integer, SubjectDto> subjectMap;
+	
 	// calendar.jsp
 	Map<Integer, List<String>> weeksContainer;
 	
@@ -41,9 +34,10 @@
 
 <%
 	
+	
 	// TODO revison
 	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
-	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("12");
+	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("9");
 	
 	if(request.getParameter("year") != null) {
 		year = request.getParameter("year");
@@ -60,7 +54,7 @@
 	
 	weeksContainer = calController.getWeeksContainer();
 	
-
+	//TODO session
 	if(session.getAttribute("sessionUser") != null) {
 		try{
 			if(session.getAttribute("sessionID").equals(session.getId())) {

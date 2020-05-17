@@ -8,14 +8,25 @@
 
 <%
 
-	if(request.getAttribute("login") != null || request.getParameter("sid") != null) {
-		subjectController = (SubjectController)Optional.ofNullable(session.getAttribute("sessionSubjectController"))
-				.orElse(new SubjectController((String)session.getAttribute("sessionUser")));
-		session.setAttribute("sessionSubjectController", subjectController);
+	if(session.getAttribute("sessionUser") != null || request.getParameter("sid") != null) {
 		
-		subjectMap = subjectController.readSubject();
-		session.setAttribute("sessionSubjectMap", subjectMap);
-		
+		try{
+			if(session.getAttribute("sessionID").equals(session.getId())) {
+				subjectController = new SubjectController((String)session.getAttribute("sessionUser"));
+				session.setAttribute("sessionSubjectController", subjectController);
+				
+				subjectMap = subjectController.readSubject();
+				session.setAttribute("sessionSubjectMap", subjectMap);
+			} else {
+				subjectController = new SubjectController((String)session.getAttribute("guest"));
+				session.setAttribute("sessionSubjectController", subjectController);
+				
+				subjectMap = subjectController.readSubject();
+				session.setAttribute("sessionSubjectMap", subjectMap);
+			}
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 %>

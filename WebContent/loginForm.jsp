@@ -6,17 +6,26 @@
 <%@include file="initializer.jsp" %>
 
 <%
-	strUser = Optional.ofNullable(request.getParameter("user")).orElse("");
+	//loginForm.jsp
+	String strUser;
+	String passwd;
+	String signUpCheck;
+	String logout;
+	int loginResult;
+	String userName = "";
+	
+	strUser = Optional.ofNullable(request.getParameter("user")).orElse("guest");
 	passwd = request.getParameter("password");
 	signUpCheck = Optional.ofNullable(request.getParameter("sign-up")).orElse("off");
 	logout = request.getParameter("logout");
 	
 	if(strUser != null && passwd != null && signUpCheck.equals("off")) {
+		
 		loginController = new LoginController();
 		loginResult = loginController.loginUser(strUser, passwd);
 		
+		// TODO session
 		if(loginResult == 1) {
-			user = strUser;
 			session.setAttribute("sessionID", session.getId());
 			session.setAttribute("sessionUser", strUser);
 			session.setAttribute("sessionMessage", "[SUCCESS] log-in success ");
@@ -24,10 +33,8 @@
 			
 		} else {
 			session.setAttribute("sessionMessage", "[failed] incorrect id or password!");
-			loginResult = 0;
 		}
 	} else if(strUser != null && passwd != null && signUpCheck.equals("on")) {
-		session.setAttribute("sessionMessage", "sign-up processing...");
 		loginController = new LoginController();
 		int check = loginController.signUp(strUser, passwd);
 		
@@ -40,12 +47,25 @@
 		}
 		
 	}
-	
-	if(logout != null) {
-		session.invalidate();
-		loginResult = 0;
+	try{
+		String sessionID = (String)session.getAttribute("sessionID");
+		if(logout != null && sessionID.equals(session.getId())) {
+			session.removeAttribute("sessionUser");
+			session.removeAttribute("sessionID");
+			session.invalidate();
+			loginResult = 0;
+		}
+	} catch(Exception e) {
+		e.printStackTrace();
 	}
 	
+	try{
+		if(session.getAttribute("sessionUser") != null) {
+			userName = (String)session.getAttribute("sessionUser");
+		}
+		} catch(Exception e) {
+			
+		}
 	
 %>
 
@@ -65,24 +85,32 @@
 		width: 115px;
 	}
 
-	div.login {
+	.login-success {
 		text-align: center;
 		<%
-		if(loginResult == 0) {
-			%>display: none;<%
-		} else if(loginResult == 1) {
-			%>display: block;
-			background-color: #f0f0f0;<%
+		try{
+			if(!userName.equals(""))    {
+				%>display: block;
+				background-color: #f0f0f0;<%
+			} else {
+				%>display: none;<%
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 		%>
 	}
 	
 	form.loginForm {
 		<%
-		if(loginResult == 1) {
-			%>display: none;<%
-		} else if(loginResult == 0) {
+		try{
+		if(session.getAttribute("sessionID") == null) {
 			%>display: block;<%
+		} else{
+			%>display: none;<%
+		}
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 		%>
 	}
@@ -99,8 +127,9 @@
 </head>
 <body>
 	<div class="menu loginforms">
-		<div class="login">
-			<h5>Welcome!<br /><%=user %></h5><br />
+		<div class="login-success">
+			<h5>Welcome!<br />
+			<%=userName %></h5><br />
 			<form method="get" action="index.jsp" >
 				<input type="text" name="logout" value="logout" class="logout" />
 				<input type="submit" value="log out">
