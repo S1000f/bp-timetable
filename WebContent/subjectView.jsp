@@ -7,9 +7,20 @@
 <%@ include file="initializer.jsp" %>
 
 <%
+	String delete;
+	int reloadSubjectView = 0;
 
-	if(session.getAttribute("sessionUser") != null || request.getParameter("sid") != null) {
+	delete = Optional.ofNullable(request.getParameter("delete")).orElse("undefined");	
+	if(!delete.equals("undefined")) {
+		reloadSubjectView = subjectController.deleteSubject(delete);
 		
+		planController = (PlanController)Optional.ofNullable(session.getAttribute("sessionPlanController"))
+				.orElse(new PlanController((String)session.getAttribute("sessionUser")));
+		
+		planController.deletePlan(delete);
+	}
+	
+	if(session.getAttribute("sessionUser") != null || request.getParameter("sid") != null || reloadSubjectView == 1) {
 		try{
 			if(session.getAttribute("sessionID").equals(session.getId())) {
 				subjectController = new SubjectController((String)session.getAttribute("sessionUser"));
@@ -39,7 +50,7 @@
 <style type="text/css">
 
 	.subjectView {
-		width: 390px;
+		width: 445px;
 		height: 17px;
 		font-size: 12px;
 	}
@@ -49,11 +60,16 @@
 			border: 0.5px solid black;
 		}
 		
-		.subjectView > .contents > div.sub {
+		.subjectView > .contents > .sub {
 			display: inline-block;
 			margin: 0 0.5px 0 0.5px;
 		}
-
+	
+	.hidden {
+		display: none;
+	}
+	
+	
 </style>
 </head>
 <body>
@@ -75,7 +91,13 @@
 					<div class="sub sid" style="width: 40px" ><%=String.valueOf(subjectMap.get(i).getSid()) %> </div>
 					<div class="sub subject" style="width: 60px" ><%=subjectMap.get(i).getSubjectName() %> </div>
 					<div class="sub teacher" style="width: 60px" ><%=subjectMap.get(i).getTeacher() %>.</div>
-					<div class="sub desc" style="width: 170px" ><%=subjectMap.get(i).getDesc() %>.</div><%
+					<div class="sub desc" style="width: 170px" ><%=subjectMap.get(i).getDesc() %>.</div>
+					<form method="get" action="index.jsp" class="sub">
+						<input type="text" name="delete" class="hidden" value="<%=subjectMap.get(i).getSid() %>" />	
+						<input type="submit" class="deleteSubmit" value="delete" />
+					</form>
+					
+					<%
 				}
 			}
 			%>

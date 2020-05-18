@@ -51,6 +51,13 @@ public class SubjectController {
 		return subjectMap;
 	}
 	
+	public int deleteSubject(String sid) {
+		int intSid = Integer.valueOf(sid);
+		int result = subjectDao.deleteSubject(user, intSid);
+		
+		return result;
+	}
+	
 }
 
 

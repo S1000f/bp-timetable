@@ -57,6 +57,16 @@ public class PlanController {
 		return planMap;
 	}
 	
+	public int deletePlan(String sid) {
+		int intSid = Integer.valueOf(sid);
+		int result = 0;
+		result = planDao.deletePlan(user, intSid);
+		
+		return result;
+		
+	}
+	
+	
 	public Map<Integer,List<String>> getSubNamesMap() {
 		return initplan.getWeekSubNames();
 	}

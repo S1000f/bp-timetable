@@ -105,9 +105,26 @@ public class SubjectDao {
 		return result;
 	}
 	
-	//TODO implement later
-	public int deleteSubject(SubjectDto sub) {
-		return 0;
+	public int deleteSubject(String user, int sid) {
+		int result = -1;
+		try {
+			conn = DAOBase.getInstance().getConnection();
+			sql = "delete from subject where user = ? and sid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user);
+			pstmt.setInt(2, sid);
+			result = pstmt.executeUpdate();
+			
+			System.out.println(result);
+			
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DAOBase.getInstance().closeDBResources(pstmt, conn);
+		}
+		
+		return result;
 	}
 		
 }

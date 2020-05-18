@@ -3,7 +3,9 @@ package model.data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -209,9 +211,24 @@ public class PlanDao {
 		return result;
 	}
 	
-	//TODO implement later
-	public int deletePlan(PlanDto plan) {
-		return 0;
+	public int deletePlan(String user, int sid) {
+		int result = -1;
+		List<String> days = new ArrayList<>(Arrays.asList("mon", "tue", "wed", "thur", "fri", "sat", "sun"));
+		try {
+			conn = DAOBase.getInstance().getConnection();
+			Statement stmt = conn.createStatement();
+			for(int i = 0; i < 7; i++) {
+				sql = "update plan set ";
+				sql += days.get(i) + "= null where user = '" + user + "' and " + days.get(i) +" =" + sid;
+				result = stmt.executeUpdate(sql);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DAOBase.getInstance().closeDBResources(pstmt, conn);
+		}
+		
+		return result;
 	}
 		
 }

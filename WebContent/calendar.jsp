@@ -37,7 +37,7 @@
 		.container > .cal {
 			width: 480px;
 			margin: 0 auto;
-			padding: 50px;
+			padding: 20px;
 		}
 		
 			.container > .cal > div.rows {
