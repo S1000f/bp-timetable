@@ -29,7 +29,7 @@
 	
 	chosenSubject = Optional.ofNullable(request.getParameter("chooseSubject")).orElse("undefined");
 	
-	// TODO revision
+	// when 'sava plan' button clicked
 	if(!chosenSubject.equals("undefined")) {
 		subjectController = (SubjectController)Optional.ofNullable(session.getAttribute("sessionSubjectController"))
 				.orElse(new SubjectController((String)session.getAttribute("sessionUser")));

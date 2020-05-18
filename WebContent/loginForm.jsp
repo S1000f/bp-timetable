@@ -6,7 +6,6 @@
 <%@include file="initializer.jsp" %>
 
 <%
-	//loginForm.jsp
 	String strUser;
 	String passwd;
 	String signUpCheck;
@@ -24,7 +23,6 @@
 		loginController = new LoginController();
 		loginResult = loginController.loginUser(strUser, passwd);
 		
-		// TODO session
 		if(loginResult == 1) {
 			session.setAttribute("sessionID", session.getId());
 			session.setAttribute("sessionUser", strUser);
@@ -47,6 +45,7 @@
 		}
 		
 	}
+	
 	try{
 		String sessionID = (String)session.getAttribute("sessionID");
 		if(logout != null && sessionID.equals(session.getId())) {
@@ -63,9 +62,9 @@
 		if(session.getAttribute("sessionUser") != null) {
 			userName = (String)session.getAttribute("sessionUser");
 		}
-		} catch(Exception e) {
-			
-		}
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
 	
 %>
 
@@ -89,7 +88,7 @@
 		text-align: center;
 		<%
 		try{
-			if(!userName.equals(""))    {
+			if(!userName.equals("")) {
 				%>display: block;
 				background-color: #f0f0f0;<%
 			} else {
@@ -104,11 +103,11 @@
 	form.loginForm {
 		<%
 		try{
-		if(session.getAttribute("sessionID") == null) {
-			%>display: block;<%
-		} else{
-			%>display: none;<%
-		}
+			if(session.getAttribute("sessionID") == null) {
+				%>display: block;<%
+			} else{
+				%>display: none;<%
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

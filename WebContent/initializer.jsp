@@ -33,8 +33,6 @@
 %>
 
 <%
-	
-	
 	// TODO revison
 	year = Optional.ofNullable((String)session.getAttribute("sessionYear")).orElse("2077");
 	month = Optional.ofNullable((String)session.getAttribute("sessionMonth")).orElse("9");
@@ -54,7 +52,6 @@
 	
 	weeksContainer = calController.getWeeksContainer();
 	
-	//TODO session
 	if(session.getAttribute("sessionUser") != null) {
 		try{
 			if(session.getAttribute("sessionID").equals(session.getId())) {
@@ -63,7 +60,8 @@
 				subNamesMap = planController.getSubNamesMap();
 				subTagsMap = planController.getSubTagsMap();
 			} else {
-				planController = new PlanController((String)session.getAttribute("guest"));
+				//TODO revison
+				planController = new PlanController("guest");
 				planMap = planController.readPlan(year, month, weeksContainer);
 				subNamesMap = planController.getSubNamesMap();
 				subTagsMap = planController.getSubTagsMap();

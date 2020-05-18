@@ -39,7 +39,7 @@
 <style type="text/css">
 
 	.subjectView {
-		width: 380px;
+		width: 390px;
 		height: 17px;
 		font-size: 12px;
 	}

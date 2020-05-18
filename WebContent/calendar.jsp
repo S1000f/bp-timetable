@@ -1,11 +1,21 @@
 <%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@include file="initializer.jsp" %>
 
 <%
-	List<String> empty = new ArrayList<>(Arrays.asList("e","","","","","",""));
-
+	List<String> empty = new ArrayList<>(Arrays.asList("","","","","","",""));
+	try{
+		if(session.getAttribute("sessionUser") == null) {
+			for(int i = 0; i < 7; i++) {
+				subNamesMap.replace(i, empty);
+				subTagsMap.replace(i, empty);
+			}
+		}
+	} catch(Exception e){
+		e.printStackTrace();
+	}
 %>
 
 <!DOCTYPE html>
@@ -73,7 +83,6 @@
 					font-size: 14px;
 				}
 				
-				
 </style>
 </head>
 <body>
@@ -95,6 +104,7 @@
 					for(int i = 1; i <= weeks; i++) {
 						%><div class="rows week<%=i %>"><%
 						for(int j = 0; j < weeksContainer.get(i).size(); j++) {
+							
 							%><div class="day oneday d<%= weeksContainer.get(i).get(j) %>"><%=weeksContainer.get(i).get(j) %>
 								<div class="subject s<%= weeksContainer.get(i).get(j) %>" style="background-color:
 								<%=subTagsMap.getOrDefault(i, empty).get(j) %>">

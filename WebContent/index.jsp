@@ -21,11 +21,6 @@
 		display: inline-block;
 		margin: 0 20px 0 10px;
 	}
-	
-	.messenger {
-		font-size: 14px;
-		font-weight: bolder;	
-	}
 
 </style>
 </head>
