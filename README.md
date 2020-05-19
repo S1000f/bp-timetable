@@ -9,3 +9,7 @@
 ## 1. 사용법
 
 ### 1.1 아이디 생성 혹은 로그인 하기
+
+![login01](images/login01.png)
+
+![login02](images/login02.png)
