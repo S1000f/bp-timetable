@@ -12,4 +12,8 @@
 
 ![login01](images/login01.png)
 
++ 원하는 아이디와 비밀번호를 입력 후 'check for sign-up'에 체크하고 'sign up' 버튼을 클릭하면 아이디가 생성됩니다.
+
 ![login02](images/login02.png)
+
++ 생성한 아이디와 비밀번호를 입력 후 'log in' 버튼을 클릭하면 정상 로그인 완료 메시지가 출력되며 로그인이 완료됩니다.
