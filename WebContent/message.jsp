@@ -16,8 +16,6 @@
 <body>
 	<div class="messenger">
 	>>> <%=(String)Optional.ofNullable(session.getAttribute("sessionMessage")).orElse("log in or sign up, please") %>
-	<br />
-	>>> <%=session.getAttribute("sessionID") %>
 	</div>
 </body>
 </html>

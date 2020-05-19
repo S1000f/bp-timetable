@@ -13,7 +13,7 @@
 <style type="text/css">
 
 	.header {
-		height: 200px;
+		height: 220px;
 		overflow: hidden;
 	}
 	
